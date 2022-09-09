@@ -1,0 +1,29 @@
+{
+	"$schema": "../../../node_modules/nx/schemas/project-schema.json",
+	"sourceRoot": "libs/studio/types/src",
+	"projectType": "library",
+	"targets": {
+		"generate": {
+			"executor": "@nrwl/workspace:run-commands",
+			"options": {
+				"command": "nx run studio-types:generate_schema"
+			}
+		},
+		"generate_schema": {
+			"executor": "nx:run-script",
+			"outputs": ["libs/studio/types/src/generated"],
+			"options": {
+				"script": "generate_schema"
+			}
+		},
+		"lint": {
+			"executor": "@nrwl/linter:eslint",
+			"outputs": ["{options.outputFile}"],
+			"options": {
+				"lintFilePatterns": ["libs/studio/types/**/*.ts"]
+			}
+		}
+	},
+	"tags": [],
+	"implicitDependencies": ["studio"]
+}

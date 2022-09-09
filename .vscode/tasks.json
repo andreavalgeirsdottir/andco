@@ -1,0 +1,151 @@
+{
+	// See https://go.microsoft.com/fwlink/?LinkId=733558
+	// for the documentation about the tasks.json format
+	// Replace [project_name] with your NX project name.
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "yarn clear",
+			"detail": "Recursively clear the project of all node_modules including workspaces",
+			"type": "npm",
+			"script": "clear",
+			"problemMatcher": []
+		},
+		{
+			"label": "yarn clear:install",
+			"detail": "Clear the project of all node_modules and then run yarn install",
+			"type": "npm",
+			"script": "clear:install",
+			"problemMatcher": []
+		},
+		{
+			"label": "install workspace (production)",
+			"detail": "Execute yarn install for a specific workspace --production",
+			"type": "shell",
+			"command": "yarn workspace ${input:appName} install --production",
+			"problemMatcher": []
+		},
+		{
+			"label": "patch-package $name",
+			"command": "npx patch-package ${input:patchName}",
+			"detail": "Patch a specific node_modules package in the project",
+			"type": "shell",
+			"group": "test",
+			"problemMatcher": []
+		},
+		{
+			"type": "shell",
+			"command": "sh ./scripts/vercel/ignore-vercel-build.sh --target=${input:appName} --verbose",
+			"label": "sh: ignore vercel build - {input}",
+			"detail": "Test the 'ignore-vercel-build' script against an app",
+			"problemMatcher": [],
+			"presentation": {
+				"group": "ignore vercel"
+			}
+		},
+		{
+			"type": "shell",
+			"command": "ip=$(ipconfig getifaddr en0); echo http://${ip}:4200",
+			"label": "Show remote URL (ip)",
+			"detail": "Returns an URL accessible for devices on the same network (useful for mobile development)",
+			"problemMatcher": []
+		},
+		{
+			"type": "npm",
+			"script": "release",
+			"problemMatcher": [],
+			"label": "npm: release",
+			"detail": "Execute 'standard-version', bumping the version semantically and updating the changelog"
+		},
+		{
+			"command": "nx run studio-blocks:generate_object -- --schemaType=${input:schemaType} --blockName=${input:inputName} --addToContentBlock=${input:addToContentBlock}",
+			"label": "nx: generate sanity block/object/document",
+			"detail": "Generate a new Studio Block/Object/Document",
+			"problemMatcher": [],
+			"type": "shell"
+		},
+		{
+			"command": "nx run studio-blocks:generate_object --schemaType=${input:schemaType} --blockName=${input:inputName} --addToContentBlock=${input:addToContentBlock} --dry",
+			"label": "nx: generate sanity block/object/document:dry",
+			"detail": "Dry Runs the Generate script for creating a new Studio Block/Object/Document (no output)",
+			"problemMatcher": [],
+			"type": "shell"
+		},
+		{
+			"command": "yarn nx generate @nrwl/next:library --name=${input:libraryType}/${input:inputName} --style=scss --no-interactive",
+			"label": "nx: generate nx library",
+			"problemMatcher": [],
+			"detail": "Generate a new NX library",
+			"type": "shell"
+		},
+		{
+			"command": "yarn nx migrate latest",
+			"label": "nx: migrate latest",
+			"problemMatcher": [],
+			"detail": "Upgrade the project to the latest version of the NX",
+			"type": "shell"
+		},
+		{
+			"command": "yarn nx migrate --run-migrations --create-commits",
+			"label": "nx: migrate --run-migrations",
+			"problemMatcher": [],
+			"detail": "Apply the upgrade migrations for the project",
+			"type": "shell"
+		},
+		{
+			"type": "npm",
+			"script": "generate",
+			"problemMatcher": [],
+			"label": "npm: generate",
+			"detail": "Runs the NX 'generate' executor for all NX apps/libs (in parallel)"
+		},
+		{
+			"type": "typescript",
+			"tsconfig": "apps/web/tsconfig.json",
+			"option": "watch",
+			"problemMatcher": ["$tsc-watch"],
+			"group": "build",
+			"label": "tsc: watch - apps/web/tsconfig.json",
+			"detail": "Watch for TS type errors in the 'web' project"
+		}
+	],
+	"inputs": [
+		{
+			"id": "patchName",
+			"description": "Please enter the name of the package we should patch",
+			"type": "promptString"
+		},
+		{
+			"id": "inputName",
+			"type": "promptString",
+			"description": "Please enter the name"
+		},
+		{
+			"id": "appName",
+			"type": "pickString",
+			"description": "Please enter the name of the App",
+			"options": ["web", "web-e2e", "studio", "${input:inputName}"]
+		},
+		{
+			"type": "pickString",
+			"id": "libraryType",
+			"description": "Please select the NX Library category (e.g. ui)",
+			"options": ["ui", "utils", "feature", "service", "${input:inputName}"],
+			"default": "component"
+		},
+		{
+			"type": "pickString",
+			"id": "addToContentBlock",
+			"description": "Should the Block be added to the Content Block? (This will be ignored if the type is not a Block)",
+			"options": ["yes", "no"],
+			"default": "yes"
+		},
+		{
+			"id": "schemaType",
+			"type": "pickString",
+			"description": "Please select the Sanity Schema type (e.g. block)",
+			"options": ["block", "object", "document"],
+			"default": "block"
+		}
+	]
+}

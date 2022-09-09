@@ -1,0 +1,54 @@
+@use 'libs/theme' as *;
+
+.card {
+	--card-padding-vertical: var(--sz-medium);
+	--card-padding-horizontal: var(--sz-large);
+
+	display: flex;
+	flex-flow: row nowrap;
+	align-items: flex-start;
+	justify-content: flex-start;
+	padding: var(--card-padding-vertical) var(--card-padding-horizontal);
+	line-height: var(--lh-default);
+	border-radius: var(--brs-xsmall);
+	outline: none;
+
+	.info {
+		display: flex;
+		flex-flow: column nowrap;
+		align-items: flex-start;
+		justify-content: flex-start;
+	}
+
+	.title,
+	.content {
+		@include multiplier {
+			color: inherit;
+		}
+	}
+
+	.title {
+		font-size: var(--fz-small);
+	}
+
+	.content {
+		font-size: var(--fz-xsmall);
+		text-align: left;
+	}
+
+	&.variant {
+		&-stroke {
+			&-primary {
+				@include outline-interaction(var(--c-primary));
+
+				&.asButton {
+					@include outline-interaction(var(--c-primary), var(--c-secondary));
+
+					@include has-dark-parent {
+						@include outline-interaction(var(--c-level0), var(--c-level3));
+					}
+				}
+			}
+		}
+	}
+}

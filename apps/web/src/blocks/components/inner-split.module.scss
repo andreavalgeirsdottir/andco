@@ -1,0 +1,160 @@
+@use 'libs/theme' as *;
+
+$bp-m: 768px;
+
+:export {
+	bp-m: $bp-m;
+}
+
+.inner {
+	display: grid;
+	grid-template-columns: 1fr;
+	column-gap: var(--s-20);
+	row-gap: var(--s-10);
+
+	&.hasBackgroundColor {
+		&.background-color {
+			position: relative;
+
+			.left {
+				padding-bottom: var(--s-padding-vertical);
+
+				&::before {
+					position: absolute;
+					top: var-(--s-padding-vertical);
+					right: var-(--s-padding-horizontal);
+					z-index: -1;
+					display: block;
+					width: calc(100% + var(--s-padding-horizontal) * 2);
+					height: calc(100% + var(--s-padding-vertical));
+					content: '';
+				}
+			}
+
+			.left,
+			.right {
+				position: relative;
+				z-index: 1;
+			}
+
+			&-primary {
+				.left {
+					@include textTags {
+						color: var(--c-level0);
+					}
+				}
+
+				.left::before,
+				&::before {
+					background-color: var(--c-primary);
+				}
+			}
+
+			&-secondary {
+				.left {
+					@include textTags {
+						color: var(--c-level0);
+					}
+				}
+
+				.left::before,
+				&::before {
+					background-color: var(--c-secondary);
+				}
+			}
+
+			&-tertiary {
+				.left {
+					@include textTags {
+						color: var(--c-level0);
+					}
+				}
+
+				.left::before,
+				&::before {
+					background-color: var(--c-tertiary);
+				}
+			}
+
+			&-level-1 {
+				.left::before,
+				&::before {
+					background-color: var(--c-level1);
+				}
+			}
+
+			&-level-2 {
+				.left::before,
+				&::before {
+					background-color: var(--c-level2);
+				}
+			}
+		}
+	}
+}
+
+@media (min-width: $bp-m) {
+	.inner {
+		grid-template-columns: 50% 50%;
+		column-gap: 0;
+
+		&.hasBackgroundColor {
+			&.background-color {
+				.left {
+					padding-bottom: 0;
+
+					&::before {
+						content: none;
+					}
+				}
+
+				&::before {
+					position: absolute;
+					top: 0;
+					right: 50%;
+					z-index: -1;
+					display: block;
+					width: 50vw;
+					height: 100%;
+					content: '';
+				}
+			}
+		}
+
+		&.reversed {
+			.right {
+				order: -1;
+			}
+
+			&.hasBackgroundColor {
+				&.background-color {
+					&::before {
+						right: auto;
+						left: 50%;
+						width: calc(50vw - 8px);
+					}
+				}
+			}
+
+			.left {
+				padding-right: 0;
+				padding-left: var(--s-10);
+			}
+
+			.right {
+				padding-right: var(--s-10);
+				padding-left: 0;
+			}
+		}
+
+		&:not(.reversed) {
+			.left {
+				padding-right: var(--s-10);
+			}
+
+			.right {
+				padding-left: var(--s-10);
+			}
+		}
+	}
+}

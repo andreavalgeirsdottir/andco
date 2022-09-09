@@ -1,0 +1,57 @@
+{
+	"$schema": "../../../node_modules/nx/schemas/project-schema.json",
+	"sourceRoot": "libs/service/meilisearch/src",
+	"projectType": "library",
+	"tags": [],
+	"targets": {
+		"serve": {
+			"executor": "@nrwl/workspace:run-commands",
+			"options": {
+				"command": "libs/service/meilisearch/meilisearch --master-key=$NEXT_PUBLIC_MEILISEARCH_API_KEY",
+				"envFile": "apps/web/.env"
+			}
+		},
+		"init": {
+			"executor": "nx:run-script",
+			"options": {
+				"script": "run init"
+			}
+		},
+		"seed": {
+			"executor": "@nrwl/workspace:run-commands",
+			"options": {
+				"command": "curl -H \"authorization: Bearer $NEXT_PUBLIC_MEILISEARCH_API_KEY\" $NEXT_PUBLIC_VERCEL_URL/api/v1/search/seed",
+				"envFile": "apps/web/.env"
+			}
+		},
+		"delete_all": {
+			"executor": "@nrwl/workspace:run-commands",
+			"options": {
+				"command": "curl -H \"authorization: Bearer $NEXT_PUBLIC_MEILISEARCH_API_KEY\" $NEXT_PUBLIC_VERCEL_URL/api/v1/search/delete_all",
+				"envFile": "apps/web/.env"
+			}
+		},
+		"delete_n_seed": {
+			"executor": "@nrwl/workspace:run-commands",
+			"options": {
+				"commands": ["yarn nx run service-meilisearch:delete_all", "yarn nx run service-meilisearch:seed"],
+				"parallel": false
+			}
+		},
+		"lint": {
+			"executor": "@nrwl/linter:eslint",
+			"outputs": ["{options.outputFile}"],
+			"options": {
+				"lintFilePatterns": ["libs/service/meilisearch/**/*.{ts,tsx,js,jsx}"]
+			}
+		},
+		"test": {
+			"executor": "@nrwl/jest:jest",
+			"outputs": ["coverage/libs/service/meilisearch"],
+			"options": {
+				"jestConfig": "libs/service/meilisearch/jest.config.ts",
+				"passWithNoTests": true
+			}
+		}
+	}
+}

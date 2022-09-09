@@ -1,0 +1,43 @@
+@use 'libs/theme' as *;
+
+.richTextBlock {
+	--wider: calc(var(--s-padding-horizontal));
+
+	@media (min-width: 1024px) {
+		--wider: calc(var(--s-padding-horizontal) * 3);
+	}
+
+	@media (min-width: 1800px) {
+		--wider: calc(var(--s-padding-horizontal) * 3);
+	}
+
+	.title {
+		width: calc(100% + var(--wider) * 2);
+		margin-bottom: var(--s-padding-vertical);
+		margin-left: var-(--wider);
+		padding: 0 var(--s-padding-horizontal);
+		color: var(--c-primary);
+		font-weight: var(--fw-regular);
+		font-size: var(--fz-h2);
+		text-align: center;
+	}
+
+	.hr {
+		width: 100%;
+		height: 1px;
+		margin-bottom: var(--sz-gap-medium);
+		background-color: var(--c-primary);
+	}
+
+	ol {
+		padding-left: 1.25em;
+	}
+
+	&:first-child {
+		margin-top: calc(var-(--s-padding-vertical) + var(--s-4));
+	}
+
+	& + & {
+		margin-top: calc(var-(--s-padding-vertical) * 2 + var(--s-10));
+	}
+}

@@ -1,0 +1,38 @@
+@use 'libs/theme' as *;
+
+.inner {
+	padding-top: 0;
+
+	:global {
+		.coi-category-consent {
+			@include multiplier(3) {
+				margin-top: 0;
+			}
+		}
+
+		.coi-category-consent__update-consent {
+			@include multiplier(3) {
+				padding: var(--s-2) var(--s-6);
+				color: var(--c-primary);
+				font-weight: var(--fw-semibold);
+				font-size: var(--fz-xsmall);
+				font-family: var(--ff-body);
+				letter-spacing: 0;
+				text-transform: none;
+				background: transparent;
+				border: 1px solid var(--c-primary);
+				border-radius: 1px;
+			}
+		}
+
+		.switch-container__slider {
+			@include multiplier(3) {
+				background: var(--c-palettes-primary-50);
+
+				&::after {
+					background: var(--c-palettes-primary-30);
+				}
+			}
+		}
+	}
+}

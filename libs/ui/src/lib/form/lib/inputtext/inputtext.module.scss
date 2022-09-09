@@ -1,0 +1,94 @@
+@use 'libs/theme' as *;
+
+@mixin input {
+	--max-width: 100%;
+	--min-width: 20ch;
+	--padding-horizontal: 22px;
+	--padding-vertical: 17px;
+	--width: 100%;
+	--height: 52px;
+
+	width: var(--width);
+	min-width: var(--min-width);
+	max-width: var(--max-width);
+	height: var(--height);
+	padding: var(--padding-vertical) var(--padding-horizontal);
+	font-size: 16px;
+	font-family: var(--ff-body);
+	background-color: var(--c-level0);
+	border-radius: var(--brs-xsmall);
+	transition: background-color var(--trs-quick), border-color var(--trs-quick);
+
+	@media (min-width: 500px) {
+		--min-width: 35ch;
+	}
+
+	@media (min-width: 1024px) {
+		font-size: var(--fz-small);
+	}
+
+	@include disabled;
+	@include outline-interaction(var(--c-primary), var(--c-secondary));
+	@include placeholder {
+		color: var(--c-form-placeholder);
+	}
+}
+
+.input {
+	@include input;
+}
+
+.label {
+	&.iconPosition {
+		&-before {
+			&.hasIcon {
+				.input {
+					padding-left: var(--s-12);
+				}
+			}
+
+			.icon {
+				left: var(--s-4);
+			}
+		}
+
+		&-after {
+			&.hasIcon {
+				.input {
+					padding-right: var(--s-12);
+				}
+			}
+
+			.icon {
+				right: var(--s-4);
+			}
+		}
+	}
+
+	&:focus-within,
+	&:hover {
+		.icon {
+			color: var(--c-secondary);
+			transition: color var(--trs-quick);
+		}
+	}
+
+	&:active {
+		.icon {
+			color: var(--c-primary);
+			transition: color var(--trs-quick);
+		}
+	}
+}
+
+.div {
+	position: relative;
+	width: 100%;
+}
+
+.icon {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	transition: color var(--trs-base);
+}

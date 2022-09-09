@@ -1,0 +1,160 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+
+import { Fieldset } from '../fieldset/fieldset';
+import { FieldError } from '../field-error/field-error';
+import { InputText } from '../inputtext/inputtext';
+import { TextArea } from '../textarea/textarea';
+import { Select } from '../select/select';
+import { Label } from '../label/label';
+import { Checkbox } from '../checkbox/checkbox';
+import { RadioGroup } from '../radio/radio';
+
+<Meta title="Library/Form/Info" />
+
+# Form
+
+### Form Hook
+
+We're using [react-hook-form](https://react-hook-form.com/) to save and store all the data in the form.
+
+[See story](?path=/story/library-form-fieldset--default)
+
+```tsx
+import { Form, useForm, yup, yupResolver } from '@noa/ui';
+
+// The YUP schema defining the form fields and how they are validated.
+const schema = yup.object().shape({
+	firstName: yup.string().required('Please enter your first name'),
+});
+
+// The TS types of the form fields.
+type FormValues = {
+	firstName: string;
+};
+
+const Component = () => {
+	// Initialization of the Form Hook provided with the form fields and the schema.
+	const form = useForm<FormValues>({
+		defaultValues: {
+			firstName: '',
+		},
+		resolver: yupResolver(schema),
+	});
+
+	return (
+		<form onSubmit={form.handleSubmit(handleSubmit)}>
+			<Fieldset>
+				<Form.Controller
+					name="firstName"
+					control={form.control}
+					render={({ field, fieldState }) => (
+						<InputText
+							label="First name"
+							placeholder="Enter your first name"
+							description="We need your first name to know what to call you"
+							fieldState={fieldState}
+							{...field}
+						/>
+					)}
+				/>
+			</Fieldset>
+		</form>
+	);
+};
+```
+
+### Fields
+
+#### InputText
+
+[See story](?path=/story/library-form-inputtext--default)
+
+<Canvas>
+	<InputText
+		placeholder="I'm the placeholder"
+		label="I'm the label"
+		description="Descriptive information about the field"
+	/>
+</Canvas>
+
+#### TextArea
+
+[See story](?path=/story/library-form-textarea--default)
+
+<Canvas>
+	<TextArea
+		placeholder="I'm the placeholder"
+		label="I'm the label"
+		description="Descriptive information about the field"
+	/>
+</Canvas>
+
+#### Select
+
+[See story](?path=/story/library-form-select--default)
+
+<Canvas>
+	<Select
+		placeholder="I'm the placeholder"
+		label="I'm the label"
+		description="Descriptive information about the field"
+		options={[
+			{ value: 'one', label: 'One' },
+			{ value: 'two', label: 'Two' },
+			{ value: 'three', label: 'Three' },
+		]}
+	/>
+</Canvas>
+
+#### Checkbox
+
+[See story](?path=/story/library-form-checkbox--default)
+
+<Canvas>
+	<Checkbox
+		label="I'm the label"
+		description="Descriptive information about the field"
+		id="example"
+		disabled={false}
+		required={false}
+		autoFocus={false}
+	/>
+</Canvas>
+
+#### Radiobox
+
+[See story](?path=/story/library-form-radio--default)
+
+<Canvas>
+	<RadioGroup
+		label="I'm the label"
+		description="Descriptive information about the field"
+		id="example"
+		options={[
+			{ value: 'one', label: 'One', description: 'Description for One' },
+			{ value: 'two', label: 'Two', description: 'Description for Two' },
+			{ value: 'three', label: 'Three', description: 'Description for Three' },
+		]}
+		disabled={false}
+		required={false}
+		autoFocus={false}
+	/>
+</Canvas>
+
+### Utility components
+
+#### FieldError
+
+[See story](?path=/story/library-form-fielderror--default)
+
+<Canvas>
+	<FieldError error={{ message: 'You need to bla bla' }} />
+</Canvas>
+
+#### Label
+
+[See story](?path=/story/library-form-label--default)
+
+<Canvas>
+	<Label label="I'm the label" />
+</Canvas>

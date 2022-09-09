@@ -1,0 +1,69 @@
+diff --git a/node_modules/next-type-safe-routes/dist/plugin/index.js b/node_modules/next-type-safe-routes/dist/plugin/index.js
+index a6b7724..8e6b6c5 100644
+--- a/node_modules/next-type-safe-routes/dist/plugin/index.js
++++ b/node_modules/next-type-safe-routes/dist/plugin/index.js
+@@ -13,16 +13,43 @@ var typeFolder = path_1.default.join("@types", packageName);
+ var log = function (message) {
+     console.log("\u001B[36m" + packageName + "\u001B[0m: " + message);
+ };
+-var writeTypesToDisc = function (nextPagesDirectory) {
++var writeTypesToDisc = function (nextPagesDirectory, config) {
+     // we assume the src directory is the directory containing the pages directory
++
+     var srcDir = path_1.default.dirname(nextPagesDirectory);
+-    var typeFolderPath = path_1.default.join(srcDir, typeFolder);
++	const dirs = config.outputDir.split('/');
++
++	let outputDir = srcDir;
++	let outputFilename = "index.d.ts";
++
++	const filename = dirs.find(d => d.includes('.ts'))
++
++	if (filename) {
++		dirs.pop();
++		const dirWithoutFilename = dirs.join('/');
++
++		if (dirWithoutFilename) {
++			outputDir = path_1.default.join(`${srcDir}/${dirWithoutFilename}`);
++			outputFilename = filename;
++		}
++	}
++
++    var typeFolderPath = path_1.default.join(outputDir);
++	if (config.verbose) {
++		console.log('[VERBOSE] Output path:', typeFolderPath)
++	}
+     var typeScriptFile = generateTypeScriptFile_1.default(nextPagesDirectory);
+     mkdirp_1.default.sync(typeFolderPath);
+-    fs_1.default.writeFileSync(path_1.default.join(typeFolderPath, "index.d.ts"), typeScriptFile);
++    fs_1.default.writeFileSync(path_1.default.join(typeFolderPath, outputFilename), typeScriptFile);
+     log("types written to " + typeFolder);
+ };
+-var run = function (nextConfig) {
++
++/**
++ * @param {boolean} customConfig.verbose - Verbose outputting
++ * @param {string} customConfig.outputDir - The output path
++ */
++var run = function (customConfig) {
++	return function (nextConfig) {
+     if (nextConfig === void 0) { nextConfig = {}; }
+     return Object.assign({}, nextConfig, {
+         webpack: function (config, options) {
+@@ -33,7 +60,7 @@ var run = function (nextConfig) {
+             // in the root of the project
+             var pagesDir = config.resolve.alias["private-next-pages"];
+             // Generate the types file when the app is being compiled
+-            writeTypesToDisc(pagesDir);
++            writeTypesToDisc(pagesDir, customConfig);
+             // Generate the types file again when page files are added/removed
+             var watcher = chokidar_1.default.watch(pagesDir, { ignoreInitial: true });
+             watcher.on("add", function () { return writeTypesToDisc(pagesDir); });
+@@ -46,6 +73,7 @@ var run = function (nextConfig) {
+             return config;
+         },
+     });
++	};
+ };
+ exports.default = run;
+ //# sourceMappingURL=index.js.map

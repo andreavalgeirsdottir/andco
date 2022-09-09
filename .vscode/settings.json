@@ -1,0 +1,17 @@
+{
+	"macros": {
+		"js.changesFormat": ["eslint.executeAutofix", "editor.action.formatChanges"],
+		"js.fullFormat": ["eslint.executeAutofix", "editor.action.formatDocument"],
+		"scss.fullFormat": ["stylelint.executeAutofix", "editor.action.formatDocument"]
+	},
+	"typescript.preferences.importModuleSpecifier": "non-relative",
+	"typescript.tsdk": "./node_modules/typescript/lib",
+	"typescript.updateImportsOnFileMove.enabled": "always",
+	"editor.linkedEditing": true,
+	"cssVariables.lookupFiles": [
+		"libs/theme/src/lib/sass/variables.scss",
+		"libs/theme/src/generated/schema.scss",
+		"libs/theme/src/generated/variables.scss"
+	],
+	"npm.packageManager": "yarn"
+}

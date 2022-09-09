@@ -1,0 +1,18 @@
+@use 'libs/theme' as *;
+
+.searchItem {
+	position: relative;
+	justify-content: flex-start;
+	width: calc(100% + var(--button-padding-horizontal) * 2);
+	margin-left: var-(--button-padding-horizontal);
+	padding-right: 40px;
+	color: var(--c-primary);
+	font-weight: var(--fw-medium);
+	text-align: left;
+	text-decoration: none;
+
+	svg {
+		position: absolute;
+		right: var(--s-4);
+	}
+}

@@ -1,0 +1,18 @@
+/**
+ * See libs/theme/config/v1.tokens.json for all tags available
+ */
+
+@mixin text-properties($tag) {
+	font-weight: var(--#{$tag}-font-weight);
+	font-size: var(--#{$tag}-font-size);
+	font-family: var(--#{$tag}-font-family);
+	line-height: var(--#{$tag}-line-height);
+}
+
+@mixin text($tag: body) {
+	@include text-properties($tag);
+}
+
+@mixin header($tag: h1) {
+	@include text-properties($tag);
+}

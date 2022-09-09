@@ -1,0 +1,19 @@
+{
+	"name": "@noa/service-meilisearch",
+	"version": "1.0.0",
+	"scripts": {
+		"serve": "./meilisearch",
+		"init": "curl -L https://install.meilisearch.com | sh",
+		"postinstall": "npx --yes cross-env ./scripts/postinstall.sh"
+	},
+	"dependencies": {
+		"@noa/utils-common": "1.0.0",
+		"@types/lodash": "4.14.179",
+		"lodash": "4.17.21",
+		"meilisearch": "0.28.0-pagination-beta.0",
+		"type-zoo": "3.4.1"
+	},
+	"devDependencies": {
+		"cross-env": "7.0.3"
+	}
+}

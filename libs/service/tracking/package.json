@@ -1,0 +1,7 @@
+{
+	"name": "@noa/service-tracking",
+	"version": "1.0.0",
+	"dependencies": {
+		"next": "12.2.2"
+	}
+}

@@ -1,0 +1,78 @@
+@use 'libs/theme' as *;
+
+$bp-m: 1024px;
+
+:export {
+	bp-m: $bp-m;
+}
+
+.header {
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+
+	.media {
+		margin-bottom: var(--s-12);
+
+		img {
+			overflow: hidden;
+			border-radius: 50%;
+		}
+	}
+
+	.info {
+		position: relative;
+		display: flex;
+		flex-flow: column nowrap;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+	}
+
+	.preTitle {
+		position: absolute;
+		bottom: calc(100% + var(--s-1));
+		display: block;
+		width: 100%;
+		height: 20px;
+		font-size: var(--fz-tiny);
+		text-align: center;
+	}
+
+	.headerTitle {
+		position: relative;
+		margin-top: 0;
+		padding: 0;
+		color: var(--c-primary);
+		font-weight: var(--fw-regular);
+		font-size: var(--fz-h3);
+	}
+
+	.cta {
+		margin-top: var(--s-4);
+	}
+
+	@media (min-width: $bp-m) {
+		margin-bottom: var(--s-6);
+
+		.headerTitle {
+			max-width: 35ch;
+		}
+
+		.subtitle {
+			max-width: 55ch;
+		}
+
+		&:not(.insideInner) {
+			.cta {
+				position: absolute;
+				top: 50%;
+				right: var(--s-2);
+				margin-top: 0;
+				transform: translateY(-50%);
+			}
+		}
+	}
+}

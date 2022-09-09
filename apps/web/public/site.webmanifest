@@ -1,0 +1,19 @@
+{
+    "name": "NX Boilerplate",
+    "short_name": "NX Boilerplate",
+    "icons": [
+        {
+            "src": "/android-chrome-192x192.png?v=1",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/android-chrome-256x256.png?v=1",
+            "sizes": "256x256",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#f0ede7",
+    "background_color": "#f0ede7",
+    "display": "standalone"
+}

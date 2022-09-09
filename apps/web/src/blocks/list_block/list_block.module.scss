@@ -1,0 +1,17 @@
+@use 'libs/theme' as *;
+
+$bp-m: 1024px;
+
+:export {
+	bp-m: $bp-m;
+}
+
+.listBlock {
+	& + & {
+		margin-top: var-(--s-4);
+
+		@media (min-width: $bp-m) {
+			margin-top: var-(--s-12);
+		}
+	}
+}

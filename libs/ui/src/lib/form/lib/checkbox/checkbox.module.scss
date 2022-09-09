@@ -1,0 +1,89 @@
+@use 'libs/theme' as *;
+
+@mixin checkbox {
+	--item-bg: transparent;
+
+	@include outline-interaction(var(--c-primary), var(--c-secondary));
+
+	aspect-ratio: 1/1;
+	position: relative;
+	display: inline-block;
+	width: var(--size);
+	height: var(--size);
+	background-color: var(--item-bg);
+	border-radius: var(--brs-xsmall);
+
+	.icon {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		color: var(--c-level0);
+		transform: translate(-50%, -50%) scale(0.5);
+		opacity: 0;
+		transition: opacity var(--trs-quick), transform var(--trs-quick);
+		pointer-events: none;
+	}
+}
+
+.label {
+	--size: 20px;
+
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: flex-start;
+	justify-content: flex-start;
+	color: var(--c-primary);
+	font-size: var(--fz-xsmall);
+	cursor: pointer;
+	transition: color var(--trs-quick);
+
+	@include disabled;
+
+	.div {
+		display: flex;
+		flex-flow: row nowrap;
+		align-items: center;
+		justify-content: flex-start;
+		column-gap: var(--s-2);
+	}
+
+	&:hover,
+	&:focus-within {
+		color: var(--c-secondary);
+
+		.checkbox {
+			box-shadow: 0 0 0 1px var(--item-color);
+			transition: border-color var(--trs-quick), background var(--trs-quick), color var(--trs-quick),
+				box-shadow var(--trs-quick);
+
+			--item-color: var(--c-secondary);
+		}
+
+		.input {
+			&:checked {
+				+ .checkbox {
+					--item-bg: var(--c-secondary);
+				}
+			}
+		}
+	}
+
+	.input {
+		@include visuallyHidden;
+
+		&:checked {
+			+ .checkbox {
+				--item-bg: var(--c-primary);
+
+				.icon {
+					transform: translate(-50%, -50%) scale(1);
+					opacity: 1;
+				}
+			}
+		}
+	}
+
+	.checkbox {
+		@include checkbox;
+	}
+}

@@ -1,0 +1,31 @@
+// Noa Ignite Global Resets/Styling
+
+html {
+	text-size-adjust: 100%;
+	scroll-behavior: smooth;
+}
+
+body {
+	font-weight: var(--fw-regular);
+	font-size: var(--fz-small);
+	font-family: var(--ff-body);
+	font-smooth: auto;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+}
+
+html,
+body {
+	min-height: 100vh;
+	margin: 0;
+	padding: 0;
+}
+
+*,
+::before,
+::after {
+	box-sizing: border-box;
+	border-color: currentcolor;
+	border-style: solid;
+	border-width: 0;
+}

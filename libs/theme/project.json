@@ -1,0 +1,57 @@
+{
+	"$schema": "../../node_modules/nx/schemas/project-schema.json",
+	"sourceRoot": "libs/theme/src",
+	"projectType": "library",
+	"tags": [],
+	"targets": {
+		"generate": {
+			"executor": "@nrwl/workspace:run-commands",
+			"options": {
+				"parallel": false,
+				"commands": [
+					{
+						"command": "yarn nx run theme:generate_variables"
+					},
+					{
+						"command": "yarn nx run theme:generate_schema"
+					}
+				]
+			}
+		},
+		"generate_variables": {
+			"executor": "nx:run-script",
+			"options": {
+				"script": "generate_variables"
+			},
+			"inputs": ["{workspaceRoot}/libs/theme/config/*.tokens.json"],
+			"outputs": ["libs/theme/src/generated"]
+		},
+		"generate_schema": {
+			"executor": "nx:run-script",
+			"options": {
+				"script": "generate_schema"
+			},
+			"outputs": ["libs/theme/src/generated"],
+			"configurations": {
+				"dev": {
+					"script": "generate_schema:dev"
+				}
+			}
+		},
+		"lint": {
+			"executor": "@nrwl/linter:eslint",
+			"outputs": ["{options.outputFile}"],
+			"options": {
+				"lintFilePatterns": ["libs/theme/**/*.{ts,tsx,js,jsx}"]
+			}
+		},
+		"test": {
+			"executor": "@nrwl/jest:jest",
+			"outputs": ["coverage/libs/theme"],
+			"options": {
+				"jestConfig": "libs/theme/jest.config.ts",
+				"passWithNoTests": true
+			}
+		}
+	}
+}

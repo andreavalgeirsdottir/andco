@@ -1,0 +1,28 @@
+.div {
+	display: flex;
+	flex-flow: row nowrap;
+	align-items: center;
+	justify-content: center;
+}
+
+.wrapper {
+	display: flex;
+	flex-flow: row nowrap;
+	align-items: center;
+	justify-content: center;
+	column-gap: var(--s-2);
+}
+
+.title {
+	font-size: var(--fz-h4);
+}
+
+.card {
+	padding: 10px 20px;
+	color: rgb(7 44 148);
+	font-size: 40px;
+	background-color: rgb(255 255 255);
+	border: 1px solid rgb(204 204 204);
+	border-radius: 5px;
+	box-shadow: 0 0 10px 5px #0000000f;
+}

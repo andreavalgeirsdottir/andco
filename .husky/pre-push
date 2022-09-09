@@ -1,0 +1,4 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+yarn nx affected:lint --parallel=5 --base=FETCH_HEAD --fix=true

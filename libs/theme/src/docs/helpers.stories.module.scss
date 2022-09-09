@@ -1,0 +1,67 @@
+.group,
+.subGroup {
+	--square-size: clamp(40px, 8vw, 800px);
+
+	display: flex;
+	flex-flow: column nowrap;
+	row-gap: var(--s-2);
+}
+
+.subGroup {
+	&[data-as-grid='true'] {
+		--square-size: clamp(80px, 12vw, 120px);
+
+		display: grid;
+		grid-template-columns: repeat(auto-fit, var(--square-size));
+		column-gap: var(--s-4);
+		row-gap: var(--s-4);
+
+		.subGroupTitle {
+			grid-column: 1/-1;
+		}
+	}
+
+	& + & {
+		margin-top: clamp(var(--s-4), 10vh, var(--s-8));
+	}
+}
+
+.groupTitle {
+	font-weight: var(--fw-semibold);
+	font-size: var(--fz-h2);
+	text-transform: uppercase;
+}
+
+.subTitle {
+	margin-top: var(--s-4);
+	font-weight: var(--fw-semibold);
+	font-size: var(--fz-h3);
+	text-transform: uppercase;
+}
+
+.subGroupTitle {
+	margin-top: var(--s-4);
+	font-weight: var(--fw-semibold);
+	font-size: var(--fz-h5);
+	text-transform: uppercase;
+}
+
+.itemTitle {
+	font-weight: var(--fw-semibold);
+	font-size: var(--fz-small);
+	text-align: left;
+	background: transparent;
+	cursor: pointer;
+}
+
+.square {
+	display: inline-block;
+	width: var(--square-size);
+	height: var(--square-size);
+	margin-right: var(--s-2);
+	overflow: hidden;
+	border: 1px solid #a0a0a07d;
+	border-radius: var(--brs-medium);
+	aspect-ratio: 1/1;
+	cursor: pointer;
+}

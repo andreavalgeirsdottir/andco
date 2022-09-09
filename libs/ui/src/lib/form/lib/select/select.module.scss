@@ -1,0 +1,27 @@
+@use '../inputtext/inputtext.module.scss' as *;
+
+@function icon($name) {
+	@return svg-load($name);
+}
+
+@mixin backgroundIcon($name, $position, $size: 16px) {
+	background-image: icon($name);
+	background-repeat: no-repeat;
+	background-position: $position;
+	background-size: $size;
+}
+
+.select {
+	@include input;
+	@include backgroundIcon('chevron-down.svg', right var(--s-3) top 50%);
+
+	padding-top: 0;
+	padding-bottom: 0;
+	cursor: pointer;
+	appearance: none;
+
+	&:not([data-value]),
+	&[data-value=''] {
+		color: var(--c-palettes-neutral-70);
+	}
+}

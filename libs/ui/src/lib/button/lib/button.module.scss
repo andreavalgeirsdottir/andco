@@ -1,0 +1,234 @@
+@use 'libs/theme' as *;
+
+.button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	margin: 0;
+	text-decoration: none;
+	border: none;
+	appearance: none;
+
+	@include disabled;
+}
+
+/** Variants */
+.variant {
+	&-fill {
+		font-weight: var(--fw-medium);
+		text-transform: uppercase;
+		border-radius: var(--brs-xsmall);
+		outline: none;
+
+		&-secondary {
+			@include fill-interaction(
+				(
+					text: var(--c-level0),
+					color: var(--c-secondary),
+				),
+				(
+					text: var(--c-level0),
+					color: var(--c-primary),
+				)
+			);
+		}
+
+		&-primary {
+			@include fill-interaction(
+				(
+					text: var(--c-level0),
+					color: var(--c-primary),
+				),
+				(
+					text: var(--c-level0),
+					color: var(--c-secondary),
+				)
+			);
+		}
+
+		@media (max-width: 500px) {
+			width: 100%;
+		}
+
+		[data-color='secondary'] &,
+		[data-color='primary'] &,
+		[data-color='tertiary'] & {
+			@include fill-interaction(
+				(
+					text: var(--c-primary),
+					color: var(--c-level0),
+				),
+				(
+					text: var(--c-secondary),
+					color: var(--c-level0),
+				)
+			);
+		}
+	}
+
+	/** Stroke */
+	&-stroke {
+		font-weight: var(--fw-medium);
+		text-transform: uppercase;
+		border-radius: var(--brs-xsmall);
+
+		/** Variant States */
+		&-secondary {
+			@include outline-interaction(var(--c-secondary), var(--c-primary));
+		}
+
+		&-primary {
+			@include outline-interaction(var(--c-primary), var(--c-secondary));
+		}
+
+		@media (max-width: 500px) {
+			width: 100%;
+		}
+
+		@include has-dark-parent {
+			@include outline-interaction(var(--c-level0), var(--c-level3));
+		}
+	}
+
+	/** Plain variants */
+	&-plain {
+		--button-color: inherit;
+		--button-background-color: transparent;
+
+		color: var(--button-color);
+		font-weight: var(--fw-semibold);
+		background: none;
+		background-color: var(--button-background-color);
+		border-radius: var(--brs-small);
+		outline: none;
+		transition: background var(--trs-base), color var(--trs-base), outline var(--trs-base),
+			opacity var(--trs-base);
+
+		&:hover,
+		&:focus-visible,
+		&:active {
+			transition: background var(--trs-quick), color var(--trs-quick), outline var(--trs-quick),
+				opacity var(--trs-base);
+		}
+
+		@include focus {
+			--button-background-color: var(--c-interaction-2);
+		}
+
+		@include active {
+			--button-background-color: var(--c-interaction-4);
+		}
+
+		&-primary {
+			--button-color: var(--c-primary);
+		}
+
+		&-secondary {
+			--button-color: var(--c-primary);
+		}
+	}
+
+	/** Plain variants */
+	&-inline {
+		@include interactable-by-bg(var(--c-interaction-1), var(--c-interaction-2));
+
+		color: inherit;
+		text-decoration: underline;
+		background: none;
+		border-radius: var(--brs-xsmall);
+		outline: none;
+
+		@include multiplier {
+			height: auto;
+			padding: 0;
+		}
+	}
+}
+
+.isLoading {
+	cursor: wait;
+	opacity: 0.6;
+}
+
+.iconPosition {
+	--icon-space: var(--s-1);
+
+	column-gap: var(--icon-space);
+
+	&-before {
+		flex-direction: row-reverse;
+	}
+
+	&-after {
+		flex-direction: row;
+	}
+}
+
+.unstyled {
+	padding: 0;
+	color: currentcolor;
+	font-size: inherit;
+	background: none;
+	cursor: pointer;
+}
+
+/** Sizes */
+.size {
+	--button-font-size: var(--fz-tiny);
+	--button-padding-vertical: var(--sz-tiny);
+	--button-padding-horizontal: var(--sz-xsmall);
+
+	padding: var(--button-padding-vertical) var(--button-padding-horizontal);
+	font-size: var(--button-font-size);
+
+	&-xsmall {
+		--button-padding-vertical: var(--sz-tiny);
+		--button-padding-horizontal: var(--sz-xsmall);
+		--button-font-size: var(--fz-tiny);
+	}
+
+	&-small {
+		--button-padding-vertical: var(--sz-xsmall);
+		--button-padding-horizontal: var(--sz-small);
+		--button-font-size: var(--fz-xsmall);
+	}
+
+	&-medium {
+		--button-padding-vertical: var(--sz-small);
+		--button-padding-horizontal: var(--sz-medium);
+		--button-font-size: var(--fz-small);
+	}
+
+	&-large {
+		--button-padding-vertical: var(--sz-medium);
+		--button-padding-horizontal: var(--sz-large);
+		--button-font-size: var(--fz-body);
+	}
+}
+
+/** Icon Only */
+.iconOnly {
+	aspect-ratio: 1/1;
+	border-radius: 100%;
+	@include expandClickAreaBefore;
+
+	.icon {
+		margin: 0;
+	}
+
+	&.size {
+		height: auto;
+
+		&-xsmall {
+			padding: 6px;
+		}
+
+		&-small {
+			padding: 8px;
+		}
+
+		&-large {
+			padding: 15px;
+		}
+	}
+}

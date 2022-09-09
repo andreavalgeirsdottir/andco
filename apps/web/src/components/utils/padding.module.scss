@@ -1,0 +1,43 @@
+@use 'libs/theme' as *;
+
+.padding {
+	--s-padding-vertical: var(--sz-content-small);
+	--s-padding-horizontal: var(--sz-content-small);
+
+	&-vertical {
+		padding-top: var(--s-padding-vertical);
+		padding-bottom: var(--s-padding-vertical);
+	}
+
+	&-horizontal {
+		padding-right: var(--s-padding-horizontal);
+		padding-left: var(--s-padding-horizontal);
+	}
+}
+
+.size {
+	&-small {
+		--s-padding-vertical: var(--sz-content-small);
+		--s-padding-horizontal: var(--sz-content-small);
+	}
+
+	&-medium {
+		--s-padding-vertical: var(--sz-content-medium);
+		--s-padding-horizontal: var(--sz-content-medium);
+	}
+
+	&-large {
+		--s-padding-vertical: var(--sz-content-large);
+		--s-padding-horizontal: var(--sz-content-medium);
+	}
+
+	&-xlarge {
+		--s-padding-vertical: var(--sz-content-xlarge);
+		--s-padding-horizontal: var(--sz-content-medium);
+	}
+
+	&-huge {
+		--s-padding-vertical: var(--sz-content-huge);
+		--s-padding-horizontal: var(--sz-content-medium);
+	}
+}

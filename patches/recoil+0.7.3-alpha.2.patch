@@ -1,0 +1,65 @@
+diff --git a/node_modules/recoil/cjs/core/Recoil_ReactMode.js.flow b/node_modules/recoil/cjs/core/Recoil_ReactMode.js.flow
+index 90819ca..2524944 100644
+--- a/node_modules/recoil/cjs/core/Recoil_ReactMode.js.flow
++++ b/node_modules/recoil/cjs/core/Recoil_ReactMode.js.flow
+@@ -86,7 +86,7 @@ function reactMode(): {mode: ReactMode, early: boolean, concurrent: boolean} {
+ function isFastRefreshEnabled(): boolean {
+   // @fb-only: const {isAcceptingUpdate} = require('__debug');
+   // @fb-only: return typeof isAcceptingUpdate === 'function' && isAcceptingUpdate();
+-  return false; // @oss-only
++  return true; // @oss-only
+ }
+ 
+ module.exports = {
+diff --git a/node_modules/recoil/cjs/recoil.js b/node_modules/recoil/cjs/recoil.js
+index 5cc3779..53a11eb 100644
+--- a/node_modules/recoil/cjs/recoil.js
++++ b/node_modules/recoil/cjs/recoil.js
+@@ -467,7 +467,7 @@ function reactMode() {
+ function isFastRefreshEnabled() {
+   // @fb-only: const {isAcceptingUpdate} = require('__debug');
+   // @fb-only: return typeof isAcceptingUpdate === 'function' && isAcceptingUpdate();
+-  return false; // @oss-only
++  return true; // @oss-only
+ }
+ 
+ var Recoil_ReactMode = {
+diff --git a/node_modules/recoil/es/recoil.js b/node_modules/recoil/es/recoil.js
+index e714fd0..b465b63 100644
+--- a/node_modules/recoil/es/recoil.js
++++ b/node_modules/recoil/es/recoil.js
+@@ -461,7 +461,7 @@ function reactMode() {
+ function isFastRefreshEnabled() {
+   // @fb-only: const {isAcceptingUpdate} = require('__debug');
+   // @fb-only: return typeof isAcceptingUpdate === 'function' && isAcceptingUpdate();
+-  return false; // @oss-only
++  return true; // @oss-only
+ }
+ 
+ var Recoil_ReactMode = {
+diff --git a/node_modules/recoil/native/recoil.js b/node_modules/recoil/native/recoil.js
+index 963dc82..1d902db 100644
+--- a/node_modules/recoil/native/recoil.js
++++ b/node_modules/recoil/native/recoil.js
+@@ -461,7 +461,7 @@ function reactMode() {
+ function isFastRefreshEnabled() {
+   // @fb-only: const {isAcceptingUpdate} = require('__debug');
+   // @fb-only: return typeof isAcceptingUpdate === 'function' && isAcceptingUpdate();
+-  return false; // @oss-only
++  return true; // @oss-only
+ }
+ 
+ var Recoil_ReactMode = {
+diff --git a/node_modules/recoil/umd/recoil.js b/node_modules/recoil/umd/recoil.js
+index b780f69..6c32353 100644
+--- a/node_modules/recoil/umd/recoil.js
++++ b/node_modules/recoil/umd/recoil.js
+@@ -467,7 +467,7 @@
+   function isFastRefreshEnabled() {
+     // @fb-only: const {isAcceptingUpdate} = require('__debug');
+     // @fb-only: return typeof isAcceptingUpdate === 'function' && isAcceptingUpdate();
+-    return false; // @oss-only
++    return true; // @oss-only
+   }
+ 
+   var Recoil_ReactMode = {

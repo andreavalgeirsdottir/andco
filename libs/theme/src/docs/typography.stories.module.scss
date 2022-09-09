@@ -1,0 +1,9 @@
+@use './theme.module.scss' as *;
+
+.article {
+	.subGroupTitle {
+		flex: 0 0 clamp(120px, 15vw, 200px);
+		padding-right: var(--s-2);
+		text-align: right;
+	}
+}
