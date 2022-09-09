@@ -1,0 +1,47 @@
+@use './color-scheme' as *;
+@use './interactions' as *;
+
+@mixin outline($default, $active: null) {
+	--comp-color: #{$default};
+	--comp-background: var(--c-transparent);
+
+	color: var(--comp-color);
+	background-color: var(--comp-background);
+	outline: none;
+	box-shadow: 0 0 0 1px var(--comp-color);
+	transition: border-color var(--trs-base), background var(--trs-base), color var(--trs-base),
+		box-shadow var(--trs-base), opacity var(--trs-base);
+
+	@include disabled {
+		--comp-color: var(--c-palettes-neutral-50);
+	}
+
+	@if $active {
+		@include not-disabled {
+			cursor: pointer;
+
+			&:hover,
+			&:focus-visible,
+			&:active {
+				transition: border-color var(--trs-quick), background var(--trs-quick), color var(--trs-quick),
+					box-shadow var(--trs-quick), opacity var(--trs-base);
+			}
+
+			@include hover {
+				--comp-color: #{$active};
+
+				box-shadow: 0 0 0 2px var(--comp-color);
+			}
+
+			@include active {
+				--comp-color: #{$default};
+
+				box-shadow: 0 0 0 4px var(--comp-color);
+			}
+		}
+	}
+
+	@include on-dark-scheme {
+		--comp-color: var(--c-on-level0);
+	}
+}

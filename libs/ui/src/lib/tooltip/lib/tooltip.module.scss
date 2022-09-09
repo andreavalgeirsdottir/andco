@@ -1,0 +1,12 @@
+@use 'libs/theme' as *;
+
+.popup {
+	@include multiplier {
+		padding: var(--sz-tiny) var(--sz-xsmall);
+		color: var(--c-white);
+		background: var(--c-palettes-neutral-10);
+		border: var(--bdw-xsmall) solid var(--c-palettes-neutral-30);
+		border-radius: var(--brs-medium);
+		box-shadow: var(--bsh-small);
+	}
+}

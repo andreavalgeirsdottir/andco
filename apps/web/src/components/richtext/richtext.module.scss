@@ -1,0 +1,64 @@
+@use 'libs/theme' as *;
+@use '../simpletext/simpletext.module.scss' as *;
+
+.block {
+	.buttonContainer {
+		display: flex;
+
+		+ .buttonContainer {
+			margin-top: var(--s-4);
+		}
+
+		&.alignment {
+			&-left {
+				justify-content: flex-start;
+			}
+
+			&-center {
+				justify-content: center;
+			}
+
+			&-right {
+				justify-content: flex-end;
+			}
+		}
+	}
+
+	.imageContainer {
+		padding-top: var(--s-2);
+		padding-bottom: var(--s-2);
+
+		&.widerThanText {
+			width: calc(100% + var(--wider) * 2);
+			margin-left: var-(--wider);
+			padding-top: var(--s-6);
+			padding-bottom: var(--s-6);
+		}
+
+		&:not(.widerThanText) {
+			.image {
+				display: flex;
+			}
+		}
+
+		&.alignment {
+			&-left {
+				.image {
+					justify-content: flex-start;
+				}
+			}
+
+			&-center {
+				.image {
+					justify-content: center;
+				}
+			}
+
+			&-right {
+				.image {
+					justify-content: flex-end;
+				}
+			}
+		}
+	}
+}

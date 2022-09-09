@@ -1,0 +1,25 @@
+{
+	"extends": [
+		"stylelint-config-standard",
+		"stylelint-config-css-modules",
+		"stylelint-config-standard-scss",
+		"stylelint-config-prettier",
+		"stylelint-config-rational-order"
+	],
+	"plugins": ["stylelint-scss", "stylelint-prettier"],
+	"ignoreFiles": ["**/generated/*.scss"],
+	"rules": {
+		"at-rule-no-unknown": null,
+		"declaration-block-no-duplicate-properties": true,
+		"no-descending-specificity": null,
+		"no-invalid-double-slash-comments": null,
+		"prettier/prettier": true,
+		"property-no-unknown": [true, { "ignoreProperties": ["/bp-*/", "/tiny|small|medium|large|huge/"] }],
+		"scss/at-rule-no-unknown": true,
+		"scss/comment-no-empty": null,
+		"scss/dollar-variable-pattern": null,
+		"scss/function-no-unknown": [true, { "ignoreFunctions": ["/var*/", "/str-*/"] }],
+		"scss/selector-no-redundant-nesting-selector": true,
+		"selector-class-pattern": null
+	}
+}

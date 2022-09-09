@@ -1,0 +1,41 @@
+@use 'libs/theme' as *;
+
+.searchItem {
+	position: relative;
+	justify-content: flex-start;
+	width: calc(100% + var(--comp-padding-horizontal) * 2);
+	margin-left: var-(--comp-padding-horizontal);
+	padding-right: 40px;
+	color: var(--c-primary);
+	font-weight: var(--fw-medium);
+	text-align: left;
+	text-decoration: none;
+
+	svg {
+		position: absolute;
+		right: var(--s-2);
+	}
+}
+
+.ul {
+	display: flex;
+	flex-flow: column nowrap;
+	row-gap: var(--s-1);
+
+	.indexName {
+		font-weight: var(--fw-semibold);
+		text-transform: uppercase;
+	}
+}
+
+.result {
+	height: 100%;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+
+.padding {
+	display: flex;
+	flex-flow: column nowrap;
+	row-gap: var(--sz-gap-medium);
+}

@@ -1,0 +1,16 @@
+{
+	"extends": "./tsconfig.json",
+	"compilerOptions": {
+		"outDir": "../../../dist/out-tsc",
+		"declaration": true,
+		"types": ["node"]
+	},
+	"ts-node": {
+		"transpileOnly": true,
+		"files": true,
+		"compilerOptions": {}
+	},
+	"files": ["../../../node_modules/@sanity/base/types/parts.d.ts"],
+	"include": ["**/*.ts", "../../../apps/studio/src/**/*.ts"],
+	"exclude": ["**/*.spec.ts", "**/*.test.ts"]
+}

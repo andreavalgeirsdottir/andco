@@ -1,0 +1,22 @@
+@use './theme.module.scss' as *;
+
+.colors {
+	[data-as-grid='true'] {
+		.article {
+			flex-flow: column nowrap;
+			padding: 0;
+			border: none;
+
+			[data-square] {
+				margin: 0;
+				padding: 0;
+			}
+
+			[data-itemtitle] {
+				margin-top: var(--s-1);
+				padding: 0;
+				font-size: clamp(calc(var(--fz-tiny) * 0.8), 1.2vw, var(--fz-xsmall));
+			}
+		}
+	}
+}

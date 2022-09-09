@@ -1,0 +1,56 @@
+{
+	"$schema": "../../node_modules/nx/schemas/project-schema.json",
+	"sourceRoot": "apps/studio/src",
+	"projectType": "application",
+	"targets": {
+		"serve": {
+			"executor": "nx:run-script",
+			"options": {
+				"script": "sanity start"
+			}
+		},
+		"build": {
+			"executor": "nx:run-script",
+			"options": {
+				"script": "sanity build ../../dist/apps/studio -y"
+			},
+			"outputs": ["dist/apps/studio"]
+		},
+		"init": {
+			"executor": "nx:run-script",
+			"options": {
+				"script": "run init",
+				"organization": "opz6VnN79"
+			}
+		},
+		"dataset_export": {
+			"executor": "nx:run-script",
+			"outputs": ["apps/studio/backup"],
+			"options": {
+				"script": "run dataset_export"
+			}
+		},
+		"dataset_import": {
+			"executor": "nx:run-script",
+			"options": {
+				"script": "run dataset_import"
+			},
+			"configurations": {
+				"replace": {
+					"replace": true
+				},
+				"missing": {
+					"missing": true
+				}
+			}
+		},
+		"lint": {
+			"executor": "@nrwl/linter:eslint",
+			"outputs": ["{options.outputFile}"],
+			"options": {
+				"lintFilePatterns": ["apps/studio/src/**/*.{ts,tsx,js,jsx}"]
+			}
+		}
+	},
+	"tags": []
+}

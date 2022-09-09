@@ -1,0 +1,61 @@
+@use 'libs/theme' as *;
+
+.fieldset {
+	--fieldset-gap: 20px;
+	--fieldset-field-size: auto;
+
+	display: grid;
+	grid-template-columns: repeat(1, 1fr);
+	column-gap: var(--fieldset-gap);
+	row-gap: var(--fieldset-gap);
+
+	@media (min-width: 500px) {
+		grid-template-columns: repeat(auto-fill, minmax(var(--fieldset-field-size), 1fr));
+	}
+
+	> * {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+	}
+}
+
+.row {
+	grid-column: 1/-1;
+	align-items: flex-start;
+	justify-content: flex-start;
+
+	&.fullWidth {
+		width: 100%;
+
+		> * {
+			flex: 1;
+			grid-column: 1/-1;
+		}
+	}
+}
+
+.center {
+	display: flex;
+	grid-column: 1/-1;
+	align-items: center;
+	justify-content: center;
+	column-gap: 10px;
+
+	&.direction {
+		&-row {
+			flex-flow: row nowrap;
+		}
+
+		&-column {
+			flex-flow: column nowrap;
+		}
+	}
+
+	&.gap {
+		&-small {
+			column-gap: var(--s-4);
+			row-gap: var(--s-4);
+		}
+	}
+}

@@ -1,0 +1,4 @@
+@mixin backdrop-filter {
+	background-color: rgba(#eee, 0.6);
+	backdrop-filter: var(--bdf-large);
+}

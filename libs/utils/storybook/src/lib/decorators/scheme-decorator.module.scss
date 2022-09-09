@@ -1,0 +1,35 @@
+@use 'libs/theme' as *;
+
+.scheme,
+.level {
+	display: flex;
+	flex-flow: column nowrap;
+	width: 100%;
+	min-height: 100vh;
+}
+
+.level {
+	> * {
+		flex: 1;
+	}
+}
+
+.scheme {
+	&[data-scheme='light'] {
+		.level {
+			@include scheme('light');
+
+			color: var(--c-schemes-light-on-level1);
+			background-color: var(--c-schemes-light-level1);
+		}
+	}
+
+	&[data-scheme='dark'] {
+		.level {
+			@include scheme('dark');
+
+			color: var(--c-schemes-dark-on-level1);
+			background-color: var(--c-schemes-dark-level1);
+		}
+	}
+}

@@ -1,0 +1,21 @@
+{
+	"name": "@noa/theme",
+	"version": "1.0.0",
+	"private": true,
+	"scripts": {
+		"generate_variables": "style-dictionary build --config ./config/style-dictionary.config.js"
+	},
+	"dependencies": {
+		"classnames": "2.3.1",
+		"next": "12.2.2",
+		"recoil": "0.7.3-alpha.2"
+	},
+	"devDependencies": {
+		"style-dictionary": "3.7.1",
+		"chalk": "5.0.1",
+		"meow": "10.1.2",
+		"nodemon": "2.0.15",
+		"mathjs": "11.0.0",
+		"sass": "1.49.11"
+	}
+}

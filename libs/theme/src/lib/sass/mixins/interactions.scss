@@ -1,0 +1,186 @@
+@use 'sass:map' as map;
+
+@mixin interactable-base {
+	cursor: pointer;
+
+	&:disabled,
+	&[disabled] {
+		cursor: not-allowed;
+		filter: grayscale(1);
+	}
+}
+
+@mixin interactable-by-filter($strength: 0.15, $active: $strength, $transition: true) {
+	@include interactable-base;
+
+	@if $transition {
+		--trs-ref: filter var(--trs-quick);
+
+		transition: var(--trs-ref);
+
+		&:hover,
+		&:focus-visible,
+		&:active {
+			--trs-ref: filter var(--trs-instant);
+		}
+	}
+
+	&:hover,
+	&:focus-visible {
+		filter: brightness(1 - $strength);
+	}
+
+	&[aria-selected='true'],
+	&:active {
+		filter: brightness(1 + $active);
+	}
+}
+
+@mixin interactable-by-bg($bgColor, $activeBgColor: $bgColor, $transition: true) {
+	@include interactable-base;
+
+	@if $transition {
+		--trs-ref: filter var(--trs-quick), background-color var(--trs-quick), color var(--trs-quick);
+
+		transition: var(--trs-ref);
+
+		&:hover,
+		&:focus-visible,
+		&:active {
+			--trs-ref: filter var(--trs-instant), background-color var(--trs-instant), color var(--trs-instant);
+		}
+	}
+
+	&:hover,
+	&:focus-visible {
+		background-color: $bgColor;
+	}
+
+	&[aria-selected='true'],
+	&:active {
+		background-color: $activeBgColor;
+	}
+}
+
+@mixin hover {
+	&:hover,
+	&:focus-visible {
+		@content;
+	}
+}
+
+@mixin focus {
+	&:focus,
+	:focus-within > & {
+		@content;
+	}
+}
+
+@mixin active {
+	&[aria-selected='true'],
+	&:active {
+		@content;
+	}
+}
+
+@mixin interacting {
+	&:hover,
+	&:focus-visible,
+	&:active {
+		@content;
+	}
+}
+
+@mixin disabled {
+	&:disabled,
+	&[aria-disabled='true'],
+	&[disabled] {
+		color: var(--c-state-disabled);
+		cursor: not-allowed;
+		filter: grayscale(1);
+		@content;
+	}
+}
+
+@mixin not-disabled {
+	&:not(:disabled),
+	&:not([aria-disabled='true']),
+	&:not([disabled]) {
+		@content;
+	}
+}
+
+@mixin fill-interaction(
+	$default: (
+		text: $text,
+		color: $color,
+	),
+	$active: null
+) {
+	--comp-text: #{map.get($default, text)};
+	--comp-background: #{map.get($default, color)};
+
+	color: var(--comp-text);
+	background-color: var(--comp-background);
+	outline: none;
+	transition: background-color var(--trs-base), color var(--trs-base), opacity var(--trs-base);
+
+	@if $active {
+		cursor: pointer;
+
+		&:hover,
+		&:focus-visible,
+		&:active {
+			transition: background-color var(--trs-quick), color var(--trs-quick), opacity var(--trs-base);
+		}
+
+		@include hover {
+			--comp-background: #{map.get($active, color)};
+		}
+
+		@include active {
+			--comp-background: #{map.get($default, color)};
+		}
+	}
+}
+
+@mixin outline-interaction($default, $active: null) {
+	--comp-color: #{$default};
+
+	color: var(--comp-color);
+	background-color: transparent;
+	border-color: var(--comp-color);
+	border-style: solid;
+	border-width: 1px;
+	outline: none;
+	box-shadow: 0 0 0 0 var(--comp-color);
+	transition: border-color var(--trs-base), background var(--trs-base), color var(--trs-base),
+		box-shadow var(--trs-base), opacity var(--trs-base);
+
+	@include disabled {
+		--comp-color: var(--c-palettes-neutral-80);
+	}
+
+	@if $active {
+		cursor: pointer;
+
+		&:hover,
+		&:focus-visible,
+		&:active {
+			transition: border-color var(--trs-quick), background var(--trs-quick), color var(--trs-quick),
+				box-shadow var(--trs-quick), opacity var(--trs-base);
+		}
+
+		@include hover {
+			--comp-color: #{$active};
+
+			box-shadow: 0 0 0 2px var(--comp-color);
+		}
+
+		@include active {
+			--comp-color: #{$default};
+
+			box-shadow: 0 0 0 4px var(--comp-color);
+		}
+	}
+}

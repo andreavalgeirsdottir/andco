@@ -1,0 +1,24 @@
+const BASE_URL =
+	process.env.NEXT_PUBLIC_BASE_URL ||
+	(process.env.NEXT_PUBLIC_VERCEL_URL ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}` : false) ||
+	'http://localhost:4200';
+
+const Config = {
+	BASE_URL,
+	APP_ENV: process.env.NEXT_PUBLIC_APP_ENV || 'development',
+	SANITY_API_TOKEN: process.env.SANITY_API_TOKEN,
+	SANITY_DATASET: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
+	SANITY_PREVIEW_SECRET: process.env.SANITY_PREVIEW_SECRET,
+	SANITY_PROJECT_ID:
+		process.env.NEXT_PUBLIC_SANITY_PROJECT_ID ||
+		(process.env.STORYBOOK_NEXT_PUBLIC_SANITY_PROJECT_ID as string),
+	SANITY_PUBLISH_API_TOKEN: process.env.SANITY_PUBLISH_API_TOKEN,
+	SANITY_URL: process.env.NEXT_PUBLIC_SANITY_URL || 'http://localhost:3333',
+	SANITY_WEBHOOK_SECRET: process.env.SANITY_WEBHOOK_SECRET,
+	MEILISEARCH_API_KEY: process.env.NEXT_PUBLIC_MEILISEARCH_API_KEY,
+	MEILISEARCH_HOST: process.env.NEXT_PUBLIC_MEILISEARCH_HOST,
+	VERCEL_REDEPLOY_URL: process.env.NEXT_PUBLIC_VERCEL_REDEPLOY_URL,
+	VERCEL_URL: process.env.NEXT_PUBLIC_VERCEL_URL || 'http://localhost:4200',
+};
+
+export default Config;

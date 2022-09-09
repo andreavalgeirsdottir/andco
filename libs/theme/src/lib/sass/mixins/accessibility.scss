@@ -1,0 +1,44 @@
+/// If you want to visually hide an element, while remain their focus states.
+/// @group Accessibility
+/// @example scss - SCSS Input
+/// .selector {
+///   @include visually-hidden;
+/// }
+///
+@mixin visually-hidden {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	word-wrap: normal;
+	clip: rect(1px, 1px, 1px, 1px);
+}
+
+/**
+  * @mixin expandClickAreaBefore
+  * @group Accessibility
+  * @description
+  * Expand the click area of an element.
+  *
+  * @example scss - SCSS Input
+  .selector {
+    position: relative;
+
+    &::before {
+      @include expandClickAreaBefore;
+    }
+  */
+@mixin expand-click-area($scale: 1) {
+	--eca-hover-scale: #{$scale};
+
+	position: absolute;
+	z-index: -1;
+	border-radius: 50%;
+	content: '';
+	inset: calc(var(--eca-hover-scale) * -0.7rem);
+
+	// increase tap target size for touch devices
+	@media (pointer: coarse) {
+		inset: calc(var(--eca-hover-scale) * -1rem);
+	}
+}

@@ -1,0 +1,41 @@
+{
+	"compileOnSave": false,
+	"compilerOptions": {
+		"rootDir": ".",
+		"sourceMap": true,
+		"declaration": false,
+		"esModuleInterop": true,
+		"jsx": "react-jsx",
+		"moduleResolution": "node",
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+		"importHelpers": true,
+		"noEmit": true,
+		"target": "es2015",
+		"module": "esnext",
+		"lib": ["ESNext", "dom"],
+		"skipLibCheck": true,
+		"skipDefaultLibCheck": true,
+		"baseUrl": ".",
+		"paths": {
+			"@apps/*": ["apps/*"],
+			"@noa/service-mailchimp": ["libs/service/mailchimp/src/index.ts"],
+			"@noa/service-meilisearch": ["libs/service/meilisearch/src/index.ts"],
+			"@noa/service-testing": ["libs/service/testing/src/index.ts"],
+			"@noa/service-tracking": ["libs/service/tracking/src/index.ts"],
+			"@noa/studio-blocks": ["libs/studio/blocks/src/index.ts"],
+			"@noa/studio-types": ["libs/studio/types/src/index.ts"],
+			"@noa/studio-ui": ["libs/studio/ui/src/index.ts"],
+			"@noa/theme": ["libs/theme/src/index.ts"],
+			"@noa/ui": ["libs/ui/src/index.ts"],
+			"@noa/utils-animations": ["libs/utils/animations/src/index.ts"],
+			"@noa/utils-common": ["libs/utils/common/src/index.ts"],
+			"@noa/utils-date": ["libs/utils/date/src/index.ts"],
+			"@noa/utils-next": ["libs/utils/next/src/index.ts"],
+			"@noa/utils-requests": ["libs/utils/requests/src/index.ts"],
+			"@noa/utils-storybook": ["libs/utils/storybook/src/index.ts"],
+			"@web/*": ["apps/web/src/*"]
+		}
+	},
+	"exclude": ["node_modules", "tmp"]
+}

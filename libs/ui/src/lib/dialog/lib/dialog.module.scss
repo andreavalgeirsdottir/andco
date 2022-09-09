@@ -1,0 +1,75 @@
+@use 'libs/theme' as *;
+
+$bp-m: 500px;
+
+:export {
+	bp-m: $bp-m;
+}
+
+.dialog {
+	@include scrollbar;
+
+	position: fixed;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: flex-start;
+	justify-content: flex-start;
+	width: var(--dialog-width);
+	max-height: calc(100% - 10vh);
+	margin: 10vh auto 0;
+	padding: var(--dialog-padding);
+	overflow-x: hidden;
+	overflow-y: auto;
+	color: var(--c-primary);
+	background-color: var(--c-level0);
+	border: 1px solid var(--c-primary);
+	border-radius: var(--brs-xsmall) var(--brs-xsmall) 0 0;
+
+	@media (min-width: $bp-m) {
+		top: 0;
+		bottom: auto;
+		height: auto;
+		max-height: 80vh;
+		margin: 10vh auto;
+		border-radius: var(--brs-xsmall);
+	}
+
+	&.size {
+		&-small {
+			--dialog-width: clamp(200px, 100vw, 600px);
+			--dialog-padding: var(--sz-content-medium);
+		}
+
+		&-large {
+			--dialog-width: clamp(300px, 100vw, 800px);
+			--dialog-padding: var(--sz-content-xlarge);
+		}
+
+		@media (min-width: $bp-m) {
+			&-small {
+				--dialog-width: clamp(300px, 60vw, 450px);
+			}
+
+			&-large {
+				--dialog-width: clamp(300px, 60vw, 800px);
+			}
+		}
+	}
+
+	.close {
+		position: absolute;
+		top: var(--s-3);
+		right: var(--s-3);
+	}
+}
+
+.actions {
+	display: flex;
+	flex-flow: row nowrap;
+	width: 100%;
+	padding-top: var(--s-4);
+	column-gap: var(--sz-gap-tiny);
+}

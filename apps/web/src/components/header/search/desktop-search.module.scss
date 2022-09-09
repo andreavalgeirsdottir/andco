@@ -1,0 +1,79 @@
+@use 'libs/theme' as *;
+
+.ul {
+	display: flex;
+	flex-flow: column nowrap;
+	row-gap: var(--s-1);
+
+	.indexName {
+		font-weight: var(--fw-semibold);
+		text-transform: uppercase;
+	}
+}
+
+.input {
+	position: relative;
+	width: 100%;
+	margin-top: var(--s-4);
+
+	[data-input] {
+		padding-right: var(--s-12);
+	}
+
+	.spinner {
+		position: absolute;
+		top: 50%;
+		right: 15px;
+		transform: translateY(-50%);
+		opacity: 0;
+		transition: opacity var(--trs-quick);
+
+		&.visible {
+			opacity: 1;
+		}
+	}
+}
+
+.header {
+	width: 100%;
+	color: var(--c-primary);
+
+	> h5 {
+		font-weight: var(--fw-regular);
+		font-size: var(--fz-h6);
+	}
+}
+
+.result {
+	display: flex;
+	flex-flow: column nowrap;
+	width: 100%;
+	padding-top: var(--s-8);
+	color: var(--c-primary);
+	row-gap: var(--s-4);
+}
+
+.popover {
+	width: clamp(400px, 80%, 600px);
+}
+
+.dialog {
+	@include backdrop-filter;
+}
+
+.desktopSearchButton {
+	margin-right: var(--s-2);
+}
+
+.noresult,
+.error,
+.untouched {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	padding-top: var(--s-8);
+	color: var(--c-primary);
+	font-weight: var(--fw-regular);
+	font-size: var(--fz-h4);
+}

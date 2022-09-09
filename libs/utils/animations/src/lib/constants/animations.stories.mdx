@@ -1,0 +1,84 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+
+import { MOTIONS, MOTIONS_VARIANTS } from './animations';
+import { TRANSITION } from './transitions';
+
+<Meta title="Theme/Animations/Info" />
+
+# Animations
+
+Most animations can be done through `CSS` transition, but sometimes you need to use `JS` to do something that won't perform with `CSS`.
+
+For that, we're using [framer-motion](https://www.framer.com/docs/).
+
+This is a collection of different animations that can be used in your project, to easier make animations but also to make them consistent between components.
+
+### `MOTIONS_VARIANTS`.
+
+`MOTIONS_VARIANTS` is used to control the animation from the parent and the children.
+
+`@usage` Use this is you want to animate on the relation between items individually and the parent
+
+```tsx
+import { AnimatePresence, motion } from 'framer-motion';
+import { MOTIONS_VARIANTS } from '@noa/ui';
+
+const titles = ['hello', 'darkness', 'my', 'old', 'friend'];
+
+const Component = () => {
+	const [show, setShow] = useState(false);
+	const { motionList, motionItem } = MOTIONS_VARIANTS[args.animationVariant];
+
+	return (
+		<div className={styles.div}>
+			<button onClick={() => setShow(show ? false : true)}>Click me</button>
+			<motion.div className={styles.wrapper} {...motionList} animate={show ? 'animate' : 'exit'}>
+				{titles.map((title) => (
+					<motion.div key={title} className={styles.title} {...motionItem}>
+						{title}
+					</motion.div>
+				))}
+			</motion.div>
+		</div>
+	);
+};
+```
+
+### `MOTIONS`.
+
+`MOTIONS` is an object controlling `in` and `out` animations separately.
+
+You first define the `in` animation, and then the `out` animation.
+
+```tsx
+import { AnimatePresence, motion } from 'framer-motion';
+import { MOTIONS } from '@noa/ui';
+
+const Component = () => (
+	<AnimatePresence>
+		{show && <motion.div {...MOTIONS['in-right']['out-left']}>Hello</motion.div>}
+	</AnimatePresence>
+);
+```
+
+### `TRANSITION`.
+
+`TRANSITION` is an object controlling the duration and easing of the animation.
+Will be used for both `in` and `out`, but can be added separately to both `animate` and `exit` alone.
+
+You first define the `in` animation, and then the `out` animation.
+
+```tsx
+import { AnimatePresence, motion } from 'framer-motion';
+import { MOTIONS, TRANSITION } from '@noa/ui';
+
+const Component = () => (
+	<AnimatePresence>
+		{show && (
+			<motion.div {...MOTIONS['in-right']['out-left']} transition={TRANSITION.quick}>
+				Hello
+			</motion.div>
+		)}
+	</AnimatePresence>
+);
+```

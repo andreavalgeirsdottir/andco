@@ -1,0 +1,56 @@
+@use '../index.scss' as *;
+
+// Global data attributes for settings a specific level
+$levels: (0, 1, 2, 3, 4, 5);
+@each $level in $levels {
+	[data-level='#{$level}'] {
+		color: var(--c-on-level#{$level});
+		background: var(--c-level#{$level});
+
+		text {
+			fill: var(--c-on-level#{$level});
+		}
+
+		&[data-reversed] {
+			@include scheme('dark');
+		}
+	}
+
+	[data-scheme='dark'] {
+		[data-level='#{$level}'] {
+			color: var(--c-on-level#{$level});
+			background: var(--c-level#{$level});
+
+			text {
+				fill: var(--c-on-level#{$level});
+			}
+
+			&[data-reversed] {
+				@include scheme('light');
+			}
+		}
+	}
+
+	[data-scheme='light'] {
+		[data-level='#{$level}'] {
+			color: var(--c-on-level#{$level});
+			background: var(--c-level#{$level});
+
+			text {
+				fill: var(--c-on-level#{$level});
+			}
+
+			&[data-reversed] {
+				@include scheme('dark');
+			}
+		}
+	}
+}
+
+[data-scheme='light'] {
+	@include scheme('light');
+}
+
+[data-scheme='dark'] {
+	@include scheme('dark');
+}
