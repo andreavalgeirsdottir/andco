@@ -1,0 +1,10 @@
+@use 'libs/theme' as *;
+
+.footer {
+	margin-top: auto;
+
+	.inner {
+		padding-right: var(--sz-content-medium);
+		padding-left: var(--sz-content-medium);
+	}
+}

@@ -1,0 +1,17 @@
+@use '../inputtext/inputtext.module.scss' as *;
+
+.label {
+	&.forceWidth {
+		.textarea {
+			resize: vertical;
+		}
+	}
+}
+
+.textarea {
+	@include input;
+
+	height: auto;
+	min-height: 52px;
+	max-height: 60vh;
+}

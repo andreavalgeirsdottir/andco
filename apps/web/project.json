@@ -1,0 +1,93 @@
+{
+	"$schema": "../../node_modules/nx/schemas/project-schema.json",
+	"sourceRoot": "apps/web",
+	"projectType": "application",
+	"targets": {
+		"build": {
+			"executor": "@nrwl/next:build",
+			"outputs": ["{options.outputPath}"],
+			"defaultConfiguration": "production",
+			"options": {
+				"root": "apps/web",
+				"outputPath": "dist/apps/web"
+			},
+			"configurations": {
+				"production": {}
+			}
+		},
+		"serve": {
+			"executor": "@nrwl/next:server",
+			"options": {
+				"buildTarget": "web:build",
+				"dev": true
+			},
+			"configurations": {
+				"production": {
+					"buildTarget": "web:build:production",
+					"dev": false
+				}
+			}
+		},
+		"export": {
+			"executor": "@nrwl/next:export",
+			"options": {
+				"buildTarget": "web:build:production"
+			}
+		},
+		"build_then_serve": {
+			"executor": "@nrwl/workspace:run-commands",
+			"options": {
+				"commands": ["yarn nx run web:build:production", "yarn nx run web:serve:production"],
+				"parallel": false
+			}
+		},
+		"test": {
+			"executor": "@nrwl/jest:jest",
+			"outputs": ["coverage/apps/web"],
+			"options": {
+				"jestConfig": "apps/web/jest.config.ts",
+				"passWithNoTests": true
+			}
+		},
+		"lint": {
+			"executor": "@nrwl/linter:eslint",
+			"outputs": ["{options.outputFile}"],
+			"options": {
+				"lintFilePatterns": ["apps/web/**/*.{ts,tsx,js,jsx}"]
+			}
+		},
+		"storybook": {
+			"executor": "@nrwl/storybook:storybook",
+			"options": {
+				"uiFramework": "@storybook/react",
+				"port": 4400,
+				"config": {
+					"configFolder": "apps/web/.storybook"
+				}
+			},
+			"configurations": {
+				"ci": {
+					"quiet": true
+				}
+			}
+		},
+		"build-storybook": {
+			"executor": "@nrwl/storybook:build",
+			"outputs": ["{options.outputPath}"],
+			"options": {
+				"uiFramework": "@storybook/react",
+				"outputPath": "dist/storybook/web",
+				"config": {
+					"configFolder": "apps/web/.storybook"
+				}
+			},
+			"configurations": {
+				"ci": {
+					"quiet": true
+				}
+			}
+		}
+	},
+	"tags": [],
+	"implicitDepedencies": ["theme"]
+}

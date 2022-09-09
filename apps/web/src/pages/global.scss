@@ -1,0 +1,17 @@
+@use '~/../libs/theme/src/lib/sass/global' as *;
+@use 'libs/theme' as *;
+
+body {
+	color: var(--c-on-level0);
+	background-color: var(--c-level0);
+
+	@include textTags {
+		word-wrap: break-word;
+	}
+}
+
+#__next {
+	display: flex;
+	flex-flow: column nowrap;
+	min-height: 100vh;
+}
