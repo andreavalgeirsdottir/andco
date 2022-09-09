@@ -1,0 +1,38 @@
+@use 'libs/theme' as *;
+@use '../inputtext/inputtext.module.scss' as *;
+
+.select {
+	@include input;
+
+	padding-top: 0;
+	padding-bottom: 0;
+	color: var(--c-white);
+	cursor: pointer;
+	appearance: none;
+
+	&:not([data-value]),
+	&[data-value=''] {
+		color: var(--c-form-placeholder);
+	}
+
+	@include disabled {
+		& + .chevronDown {
+			color: var(--c-state-disabled);
+		}
+	}
+}
+
+.selectWrapper {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+.chevronDown {
+	position: absolute;
+	top: 50%;
+	right: var(--s-3);
+	transform: translateY(-50%);
+	transition: color var(--trs-base);
+	pointer-events: none;
+}

@@ -1,0 +1,47 @@
+@mixin hover {
+	&:hover,
+	&:focus-visible {
+		@content;
+	}
+}
+
+@mixin focus {
+	&:focus,
+	:focus-within > & {
+		@content;
+	}
+}
+
+@mixin active {
+	&[aria-selected='true'],
+	&:active {
+		@content;
+	}
+}
+
+@mixin interacting {
+	&:hover,
+	&:focus-visible,
+	&:active {
+		@content;
+	}
+}
+
+@mixin disabled {
+	&:disabled,
+	&[aria-disabled='true'],
+	&[disabled] {
+		color: var(--c-state-disabled);
+		cursor: not-allowed;
+		filter: grayscale(1);
+		@content;
+	}
+}
+
+@mixin not-disabled {
+	&:not(:disabled),
+	&:not([aria-disabled='true']),
+	&:not([disabled]) {
+		@content;
+	}
+}

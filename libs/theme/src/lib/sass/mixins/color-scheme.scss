@@ -1,0 +1,103 @@
+@mixin scheme($name) {
+	@if $name == 'dark' {
+		--c-interaction-base: 255, 255, 255;
+		--c-on-level5: var(--c-schemes-dark-on-level5);
+		--c-level5: var(--c-schemes-dark-level5);
+		--c-on-level4: var(--c-schemes-dark-on-level4);
+		--c-level4: var(--c-schemes-dark-level4);
+		--c-on-level3: var(--c-schemes-dark-on-level3);
+		--c-level3: var(--c-schemes-dark-level3);
+		--c-on-level2: var(--c-schemes-dark-on-level2);
+		--c-level2: var(--c-schemes-dark-level2);
+		--c-on-level1: var(--c-schemes-dark-on-level1);
+		--c-level1: var(--c-schemes-dark-level1);
+		--c-on-level0: var(--c-schemes-dark-on-level0);
+		--c-level0: var(--c-schemes-dark-level0);
+		--c-state-disabled: var(--c-schemes-dark-state-disabled);
+		--c-state-error: var(--c-schemes-dark-state-error);
+		--c-state-success: var(--c-schemes-dark-state-success);
+		--c-state-warning: var(--c-schemes-dark-state-warning);
+		--c-state-info: var(--c-schemes-dark-state-info);
+	}
+
+	@if $name == 'light' {
+		--c-interaction-base: 0, 0, 0;
+		--c-on-level5: var(--c-schemes-light-on-level5);
+		--c-level5: var(--c-schemes-light-level5);
+		--c-on-level4: var(--c-schemes-light-on-level4);
+		--c-level4: var(--c-schemes-light-level4);
+		--c-on-level3: var(--c-schemes-light-on-level3);
+		--c-level3: var(--c-schemes-light-level3);
+		--c-on-level2: var(--c-schemes-light-on-level2);
+		--c-level2: var(--c-schemes-light-level2);
+		--c-on-level1: var(--c-schemes-light-on-level1);
+		--c-level1: var(--c-schemes-light-level1);
+		--c-on-level0: var(--c-schemes-light-on-level0);
+		--c-level0: var(--c-schemes-light-level0);
+		--c-state-disabled: var(--c-schemes-light-state-disabled);
+		--c-state-error: var(--c-schemes-light-state-error);
+		--c-state-success: var(--c-schemes-light-state-success);
+		--c-state-warning: var(--c-schemes-light-state-warning);
+		--c-state-info: var(--c-schemes-light-state-info);
+	}
+}
+
+//
+// Mixin used for styling on a Dark Color scheme.
+//
+@mixin on-dark-scheme {
+	[data-color='primary'] &,
+	[data-color='secondary'] &,
+	[data-color='tertiary'] & {
+		@content;
+	}
+
+	@media (prefers-color-scheme: light) {
+		[data-scheme='light'] [data-level='0'][data-reversed='true'] &,
+		[data-scheme='light'] [data-level='1'][data-reversed='true'] &,
+		[data-scheme='light'] [data-level='2'][data-reversed='true'] &,
+		[data-scheme='light'] [data-level='3'][data-reversed='true'] &,
+		[data-scheme='light'] [data-level='4'][data-reversed='true'] &,
+		[data-scheme='light'] [data-level='5'][data-reversed='true'] & {
+			@content;
+		}
+	}
+
+	@media (prefers-color-scheme: dark) {
+		[data-scheme='dark'] [data-level='0'] &,
+		[data-scheme='dark'] [data-level='1'] &,
+		[data-scheme='dark'] [data-level='2'] &,
+		[data-scheme='dark'] [data-level='3'] &,
+		[data-scheme='dark'] [data-level='4'] &,
+		[data-scheme='dark'] [data-level='5'] & {
+			@content;
+		}
+	}
+}
+
+//
+// Mixin used for styling on a Light Color scheme.
+//
+@mixin on-light-scheme {
+	@media (prefers-color-scheme: light) {
+		[data-scheme='light'] [data-level='0'] &,
+		[data-scheme='light'] [data-level='1'] &,
+		[data-scheme='light'] [data-level='2'] &,
+		[data-scheme='light'] [data-level='3'] &,
+		[data-scheme='light'] [data-level='4'] &,
+		[data-scheme='light'] [data-level='5'] & {
+			@content;
+		}
+	}
+
+	@media (prefers-color-scheme: dark) {
+		[data-scheme='dark'] [data-level='0'][data-reversed='true'] &,
+		[data-scheme='dark'] [data-level='1'][data-reversed='true'] &,
+		[data-scheme='dark'] [data-level='2'][data-reversed='true'] &,
+		[data-scheme='dark'] [data-level='3'][data-reversed='true'] &,
+		[data-scheme='dark'] [data-level='4'][data-reversed='true'] &,
+		[data-scheme='dark'] [data-level='5'][data-reversed='true'] & {
+			@content;
+		}
+	}
+}

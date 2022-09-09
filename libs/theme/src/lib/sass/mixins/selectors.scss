@@ -1,0 +1,36 @@
+@mixin typographyTags {
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6,
+	span,
+	p,
+	small,
+	em,
+	tr,
+	th,
+	ul,
+	ol,
+	blockquote,
+	hr {
+		@content;
+	}
+}
+
+@mixin interactiveTags {
+	a:not([data-button]),
+	button {
+		@content;
+	}
+}
+
+@mixin textTags {
+	@include typographyTags {
+		@content;
+	}
+	@include interactiveTags {
+		@content;
+	}
+}

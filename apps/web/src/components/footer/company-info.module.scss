@@ -1,0 +1,7 @@
+.section {
+	display: flex;
+	flex-flow: column nowrap;
+	font-size: var(--fz-xsmall);
+	line-height: var(--lh-default);
+	row-gap: var(--s-1);
+}

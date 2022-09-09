@@ -1,0 +1,37 @@
+{
+	"$schema": "../../node_modules/nx/schemas/project-schema.json",
+	"sourceRoot": "libs/ui/src",
+	"projectType": "library",
+	"tags": [],
+	"targets": {
+		"icon_svgo": {
+			"executor": "nx:run-script",
+			"outputs": ["libs/ui/src/icon/assets"],
+			"options": {
+				"script": "icon_svg"
+			}
+		},
+		"icon_generate": {
+			"executor": "nx:run-script",
+			"outputs": ["libs/ui/src/icon/icons.ts"],
+			"options": {
+				"script": "icon_generate"
+			}
+		},
+		"lint": {
+			"executor": "@nrwl/linter:eslint",
+			"outputs": ["{options.outputFile}"],
+			"options": {
+				"lintFilePatterns": ["libs/ui//**/*.{ts,tsx,js,jsx}"]
+			}
+		},
+		"test": {
+			"executor": "@nrwl/jest:jest",
+			"outputs": ["coverage/libs/ui/"],
+			"options": {
+				"jestConfig": "libs/ui/jest.config.ts",
+				"passWithNoTests": true
+			}
+		}
+	}
+}

@@ -1,0 +1,45 @@
+.table {
+	overflow: hidden;
+	background-color: #fff;
+	border: 1px solid #ddd;
+	border-radius: 10px;
+
+	table {
+		width: 100%;
+	}
+
+	tr {
+		width: 100%;
+
+		&:not(:last-child) {
+			border-bottom: 1px solid #ddd;
+		}
+
+		td,
+		th {
+			padding: 15px 40px 15px 20px;
+
+			&:not(:last-child) {
+				border-right: 1px solid #ddd;
+			}
+		}
+	}
+
+	thead {
+		tr {
+			background-color: #efefef;
+			border-bottom: 1px solid #ddd;
+		}
+
+		th {
+			padding-top: 18px;
+			padding-bottom: 10px;
+			font-weight: 500;
+			text-align: left;
+
+			&:first-of-type {
+				width: 230px;
+			}
+		}
+	}
+}

@@ -1,0 +1,80 @@
+@use '../index' as *;
+
+// Global styles
+// Import this file in your main stylesheet to use the global styles.
+// It includes the reset and global variables
+
+// Typography
+@include textTags {
+	color: inherit;
+	font-family: var(--ff-body);
+}
+
+@include interactiveTags {
+	color: inherit;
+}
+
+a,
+p,
+button {
+	line-height: var(--lh-default);
+}
+
+a {
+	display: inline-block;
+	color: var(--c-on-level0);
+
+	&:not(:first-of-type) {
+		margin-inline-start: 3px;
+	}
+
+	&:not(:last-child) {
+		margin-inline-end: 3px;
+	}
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin-top: 0.5em;
+	margin-bottom: 0.15em;
+	font-weight: var(--fw-medium);
+	font-family: var(--ff-display);
+
+	&:first-child {
+		margin-top: 0;
+	}
+}
+
+h1 {
+	@include header(h1);
+}
+
+h2 {
+	@include header(h2);
+}
+
+h3 {
+	@include header(h3);
+}
+
+h4 {
+	@include header(h4);
+}
+
+h5 {
+	@include header(h5);
+}
+
+h6 {
+	@include header(h6);
+}
+
+pre,
+code {
+	font-size: 90%;
+	font-family: monospace;
+}

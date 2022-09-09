@@ -1,0 +1,15 @@
+{
+	"extends": "../../tsconfig.base.json",
+	"compilerOptions": {
+		"esModuleInterop": true,
+		"jsx": "preserve",
+		"noEmit": true,
+		"sourceMap": true,
+		"allowJs": true,
+		"skipLibCheck": true,
+		"resolveJsonModule": true
+	},
+	"include": ["./**/*.ts", "./**/*.tsx", "../../libs/studio/types/src/generated/schema.d.ts"],
+	"files": ["../../node_modules/@sanity/base/types/parts.d.ts"],
+	"exclude": ["../../node_modules"]
+}

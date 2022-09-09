@@ -1,0 +1,104 @@
+@use 'libs/theme' as *;
+
+@mixin checkbox {
+	--comp-background: transparent;
+	--comp-color: var(--c-primary);
+	--comp-icon: var(--c-white);
+
+	aspect-ratio: 1/1;
+	position: relative;
+	display: inline-block;
+	width: var(--size);
+	height: var(--size);
+	background-color: var(--comp-background);
+	border-radius: var(--brs-xsmall);
+
+	@include outline(var(--c-primary), var(--c-secondary));
+
+	@include on-dark-scheme {
+		@include outline(var(--c-on-level0), var(--c-on-level3));
+	}
+
+	.icon {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		color: var(--comp-icon);
+		transform: translate(-50%, -50%) scale(0.5);
+		opacity: 0;
+		transition: opacity var(--trs-quick), transform var(--trs-quick);
+		pointer-events: none;
+	}
+}
+
+.label {
+	--size: 20px;
+
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: flex-start;
+	justify-content: flex-start;
+	color: var(--c-primary);
+	font-size: var(--fz-xsmall);
+	cursor: pointer;
+	transition: color var(--trs-quick);
+
+	@include disabled;
+
+	@include on-dark-scheme {
+		color: inherit;
+	}
+
+	.div {
+		display: flex;
+		flex-flow: row nowrap;
+		align-items: center;
+		justify-content: flex-start;
+		column-gap: var(--s-2);
+	}
+
+	@include hover {
+		color: var(--c-secondary);
+
+		.checkbox {
+			--comp-color: var(--c-secondary);
+
+			box-shadow: 0 0 0 1px var(--comp-color);
+			transition: border-color var(--trs-quick), background var(--trs-quick), color var(--trs-quick),
+				box-shadow var(--trs-quick);
+		}
+
+		.input {
+			&:checked {
+				+ .checkbox {
+					--comp-background: var(--c-secondary);
+				}
+			}
+		}
+
+		@include on-dark-scheme {
+			.checkbox {
+				--comp-background: var(--c-palettes-neutral-30);
+			}
+		}
+	}
+
+	.input {
+		@include visually-hidden;
+
+		&:checked {
+			+ .checkbox {
+				--comp-background: var(--c-primary);
+
+				.icon {
+					transform: translate(-50%, -50%) scale(1);
+					opacity: 1;
+				}
+			}
+		}
+	}
+
+	.checkbox {
+		@include checkbox;
+	}
+}

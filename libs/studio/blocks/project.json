@@ -1,0 +1,38 @@
+{
+	"$schema": "../../../node_modules/nx/schemas/project-schema.json",
+	"sourceRoot": "libs/studio/blocks/src",
+	"projectType": "library",
+	"tags": [],
+	"targets": {
+		"generate_object": {
+			"executor": "nx:run-script",
+			"options": {
+				"script": "generate_object --blockPath=../../../apps/web/src/blocks --studioSchemasPath=../../../apps/studio/src/schemas --contentBlockComponentPath=../../../apps/web/src/blocks/content-block/content-block.tsx --contentBlockSchemaPath=./src/lib/blocks.ts"
+			},
+			"outputs": ["apps/web/src/blocks", "apps/studio/src/schemas"],
+			"configurations": {
+				"dev": {
+					"script": "generate_object:dev --dev --blockPath=../../../apps/web/src/blocks --studioSchemasPath=../../../apps/studio/src/schemas --contentBlockComponentPath=../../../apps/web/src/blocks/content-block/content-block.tsx --contentBlockSchemaPath=./src/lib/blocks.ts"
+				},
+				"dryRun": {
+					"script": "generate_object:dev --dev --dry --blockPath=../../../apps/web/src/blocks --studioSchemasPath=../../../apps/studio/src/schemas --contentBlockComponentPath=../../../apps/web/src/blocks/content-block/content-block.tsx --contentBlockSchemaPath=./src/lib/blocks.ts"
+				}
+			}
+		},
+		"lint": {
+			"executor": "@nrwl/linter:eslint",
+			"outputs": ["{options.outputFile}"],
+			"options": {
+				"lintFilePatterns": ["libs/studio/blocks/**/*.{ts,tsx,js,jsx}"]
+			}
+		},
+		"test": {
+			"executor": "@nrwl/jest:jest",
+			"outputs": ["coverage/libs/studio/blocks"],
+			"options": {
+				"jestConfig": "libs/studio/blocks/jest.config.ts",
+				"passWithNoTests": true
+			}
+		}
+	}
+}

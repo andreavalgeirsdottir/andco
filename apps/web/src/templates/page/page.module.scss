@@ -1,0 +1,51 @@
+$bp-m: 420px;
+$imageSize: 60;
+
+:export {
+	imageSize: $imageSize;
+	bp-m: $bp-m;
+}
+
+.container {
+	color: var(--c-primary);
+
+	a:not([data-button]) {
+		color: var(--c-primary);
+	}
+
+	ul {
+		display: flex;
+		flex-flow: column nowrap;
+		row-gap: var(--s-4);
+		list-style-type: disc;
+	}
+
+	strong {
+		font-weight: var(--fw-semibold);
+	}
+
+	p + p {
+		margin-top: var(--s-4);
+	}
+
+	.title {
+		color: var(--c-primary);
+		font-weight: var(--fw-regular);
+		font-size: var(--fz-h2);
+		text-align: center;
+	}
+}
+
+.cardList {
+	.media {
+		align-self: center;
+		margin-right: var(--s-2);
+		width: #{$imageSize}px;
+		height: #{$imageSize}px;
+
+		img {
+			overflow: hidden;
+			border-radius: 50%;
+		}
+	}
+}

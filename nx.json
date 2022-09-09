@@ -1,0 +1,79 @@
+{
+	"npmScope": "project_name",
+	"affected": {
+		"defaultBase": "main"
+	},
+	"useDaemonProcess": true,
+	"implicitDependencies": {
+		"package.json": {
+			"dependencies": "*",
+			"devDependencies": "*"
+		},
+		".eslintrc.json": "*",
+		".stylelintrc.json": "*"
+	},
+	"tasksRunnerOptions": {
+		"default": {
+			"runner": "@nrwl/nx-cloud",
+			"options": {
+				"cacheableOperations": [
+					"build",
+					"build-storybook",
+					"e2e",
+					"generate",
+					"generate_schema",
+					"generate_sitemap",
+					"generate_variables",
+					"icon_generate",
+					"icon_svgo",
+					"lint",
+					"meilisearch_init",
+					"stylelint",
+					"test"
+				],
+				"accessToken": "YjU3NWZlMzYtMzg5OC00MzdjLTkxOGEtNDIxMTQ2ZDMwMWI1fHJlYWQtd3JpdGU="
+			}
+		},
+		"ci": {
+			"runner": "nx/tasks-runners/default",
+			"options": {
+				"cacheableOperations": [
+					"build",
+					"build-storybook",
+					"e2e",
+					"generate",
+					"generate_schema",
+					"generate_sitemap",
+					"generate_variables",
+					"icon_generate",
+					"icon_svgo",
+					"lint",
+					"meilisearch_init",
+					"stylelint",
+					"test"
+				],
+				"accessToken": "YTBlMmYxOTItZDY0ZS00NDUzLWEyZmQtYzc2YzAzZjFiZWYwfHJlYWQtd3JpdGU="
+			}
+		}
+	},
+	"generators": {
+		"@nrwl/react": {
+			"application": {
+				"babel": true
+			}
+		},
+		"@nrwl/next": {
+			"application": {
+				"style": "scss",
+				"linter": "eslint"
+			}
+		}
+	},
+	"defaultProject": "web",
+	"$schema": "./node_modules/nx/schemas/nx-schema.json",
+	"targetDefaults": {
+		"build": {
+			"dependsOn": ["^build"]
+		}
+	}
+}

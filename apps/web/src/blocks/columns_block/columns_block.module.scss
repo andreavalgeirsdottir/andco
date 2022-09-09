@@ -1,0 +1,161 @@
+@use 'libs/theme' as *;
+
+$bp-s: 650px;
+$bp-m: 1024px;
+
+:export {
+	bp-s: $bp-s;
+	bp-m: $bp-m;
+}
+
+.columnsBlock {
+	--gap-l: var(--sz-gap-large);
+
+	position: relative;
+
+	.header {
+		+ .content {
+			padding-top: var(--s-8);
+		}
+	}
+
+	.content {
+		display: flex;
+		flex-flow: column nowrap;
+		align-items: center;
+		justify-content: center;
+		max-width: 600px;
+		margin: 0 auto;
+		column-gap: var(--gap-l);
+		row-gap: var(--s-8);
+	}
+
+	.column {
+		display: flex;
+		flex-flow: column nowrap;
+		align-items: flex-start;
+		justify-content: flex-start;
+		width: 100%;
+		color: var(--c-primary);
+		row-gap: var(--s-4);
+
+		.image {
+			align-self: center;
+			width: 100%;
+			max-width: 300px;
+			height: auto;
+
+			+ .title {
+				margin-top: var(--s-4);
+			}
+		}
+
+		.title {
+			font-size: var(--fz-xsmall);
+
+			+ .subtitle {
+				margin-top: var-(--s-2);
+			}
+		}
+
+		.subtitle {
+			font-size: var(--fz-xsmall);
+		}
+
+		.cta {
+			margin-left: var-(--button-padding-horizontal);
+			text-transform: uppercase;
+		}
+	}
+
+	// Image Size
+	&.imageSize {
+		&-small {
+			.column .image {
+				max-width: 100px;
+			}
+		}
+
+		&-medium {
+			.column .image {
+				max-width: 200px;
+			}
+		}
+
+		&-large {
+			.column .image {
+				max-width: 300px;
+			}
+		}
+
+		&-xlarge {
+			.asGrid .content,
+			.content {
+				@include multiplier {
+					grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+					column-gap: var(--s-8);
+				}
+			}
+
+			.column {
+				max-width: 320px;
+
+				.image {
+					max-width: 320px;
+				}
+			}
+		}
+	}
+
+	// Image Size
+	&.imageRounded {
+		.column .image {
+			overflow: hidden;
+			border-radius: 50%;
+		}
+	}
+
+	&.asGrid {
+		.content {
+			display: grid;
+			grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+			padding: var(--s-8) 5vw 0;
+			column-gap: var(--gap-l);
+			row-gap: var(--s-8);
+		}
+	}
+
+	@media (min-width: $bp-s) {
+		.content {
+			flex-flow: row wrap;
+			align-items: flex-start;
+			max-width: none;
+		}
+
+		.column {
+			max-width: 260px;
+		}
+	}
+
+	@media (min-width: $bp-m) {
+		.content {
+			flex-flow: row nowrap;
+			align-items: flex-start;
+			max-width: none;
+		}
+
+		.column {
+			max-width: 280px;
+		}
+	}
+
+	// Context Styling
+	&[data-color='none'] + &[data-color='none'],
+	&[data-color='primary'] + &[data-color='primary'],
+	&[data-color='secondary'] + &[data-color='secondary'],
+	&[data-color='tertiary'] + &[data-color='tertiary'],
+	&[data-color='level-1'] + &[data-color='level-1'],
+	&[data-color='level-2'] + &[data-color='level-2'] {
+		margin-top: var-(--sz-content-huge);
+	}
+}

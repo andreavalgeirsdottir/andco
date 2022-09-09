@@ -1,0 +1,21 @@
+@use '../src/pages/global.scss' as *;
+
+html,
+body,
+#root {
+	min-height: 100vh;
+}
+
+.sb-show-main.sb-main-padded {
+	padding: 0;
+}
+
+#root {
+	display: flex;
+	flex-flow: column nowrap;
+	height: 100%;
+
+	> * {
+		flex: 1;
+	}
+}

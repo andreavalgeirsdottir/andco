@@ -1,0 +1,25 @@
+name: 'Chromatic'
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  chromatic-deployment:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Install dependencies
+        run: yarn
+      - name: Publish to Chromatic
+        env:
+          STORYBOOK_NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ secrets.STORYBOOK_NEXT_PUBLIC_SANITY_PROJECT_ID  }}
+        uses: chromaui/action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          # Chromatic projectToken, refer to the manage page to obtain it.
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          buildScriptName: web:build-storybook
+          exitOnceUploaded: true

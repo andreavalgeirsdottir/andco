@@ -1,0 +1,17 @@
+{
+	"name": "@noa/service-meilisearch",
+	"version": "1.0.0",
+	"scripts": {
+		"serve": "./meilisearch",
+		"init": "curl -L https://install.meilisearch.com | sh",
+		"postinstall": "[ -f ./meilisearch ] && echo 'Meilisearch instance already exists' || yarn run init"
+	},
+	"dependencies": {
+		"@noa/utils-common": "1.0.0",
+		"@types/lodash": "4.14.179",
+		"lodash": "4.17.21",
+		"meilisearch": "0.28.0-pagination-beta.0",
+		"type-zoo": "3.4.1",
+		"cross-env": "7.0.3"
+	}
+}

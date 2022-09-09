@@ -1,0 +1,22 @@
+{
+	"extends": ["../../../.eslintrc.json"],
+	"ignorePatterns": ["!**/*"],
+	"overrides": [
+		{
+			"files": ["*.ts", "*.tsx", "*.d.ts", "*.js", "*.jsx"],
+			"parserOptions": {
+				"project": ["libs/service/tracking/tsconfig(.*)?.json"]
+			},
+			"rules": {}
+		},
+
+		{
+			"files": ["*.ts", "*.tsx"],
+			"rules": {}
+		},
+		{
+			"files": ["*.js", "*.jsx"],
+			"rules": {}
+		}
+	]
+}

@@ -1,0 +1,180 @@
+{
+  "config": {
+    "stops": [
+      0,
+      5,
+      10,
+      20,
+      30,
+      35,
+      40,
+      50,
+      60,
+      70,
+      80,
+      90,
+      95,
+      98,
+      99,
+      100
+    ],
+    "themes": [
+      {
+        "id": "88c46e78-d29e-4cb1-a847-71dcc439872f",
+        "name": "light"
+      },
+      {
+        "id": "0cd52437-9b20-422d-b161-aa601260806b",
+        "name": "dark"
+      }
+    ],
+    "keyColorId": "fdc288f0-7bbb-4e53-a363-5c1a20f45e97"
+  },
+  "colors": [
+    {
+      "name": "primary",
+      "hex": "#1137c0",
+      "chroma": "80",
+      "id": "fdc288f0-7bbb-4e53-a363-5c1a20f45e97",
+      "isHarmonized": false,
+      "hueRotation": 0,
+      "isOpen": true,
+      "inheritHexFromId": ""
+    },
+    {
+      "name": "secondary",
+      "hex": "#c60b78",
+      "chroma": "50",
+      "id": "0ead7c23-96d0-4fa4-a41f-0fc540e95e0f",
+      "isHarmonized": false,
+      "hueRotation": 0,
+      "isOpen": true
+    },
+    {
+      "name": "tertiary",
+      "hex": "#06d798",
+      "chroma": "50",
+      "id": "88cf71f7-061a-4c59-baab-02bf1b3b95e3",
+      "isHarmonized": false,
+      "hueRotation": 0,
+      "isOpen": true
+    },
+    {
+      "name": "neutral",
+      "hex": "#f0ede7",
+      "chroma": "0",
+      "id": "cd713162-0bc0-45d4-ae07-b660f4b6b7fc",
+      "isHarmonized": false,
+      "hueRotation": 0,
+      "isOpen": true,
+      "inheritHexFromId": ""
+    }
+  ],
+  "scheme": [
+    {
+      "id": "30d5ba4c-dc8e-4101-b490-0cbcfbc895c2",
+      "colors": [
+        "cd713162-0bc0-45d4-ae07-b660f4b6b7fc"
+      ],
+      "tokens": [
+        {
+          "id": "a1da8c05-b280-4d19-a3bd-4bcbc88bbf79",
+          "name": "Level0",
+          "tones": {
+            "88c46e78-d29e-4cb1-a847-71dcc439872f": 100,
+            "0cd52437-9b20-422d-b161-aa601260806b": 0
+          }
+        },
+        {
+          "id": "7eca0c8d-5ff1-42e7-a308-7e07d3707319",
+          "name": "OnLevel0",
+          "tones": {
+            "88c46e78-d29e-4cb1-a847-71dcc439872f": 20,
+            "0cd52437-9b20-422d-b161-aa601260806b": 95
+          }
+        },
+        {
+          "id": "7fbc4f8c-3056-43e5-bcb0-6c48e4af5902",
+          "name": "Level1",
+          "tones": {
+            "88c46e78-d29e-4cb1-a847-71dcc439872f": 98,
+            "0cd52437-9b20-422d-b161-aa601260806b": 10
+          }
+        },
+        {
+          "id": "f737a9c1-3a6d-4a16-bf52-80f3a272a429",
+          "name": "OnLevel1",
+          "tones": {
+            "88c46e78-d29e-4cb1-a847-71dcc439872f": 20,
+            "0cd52437-9b20-422d-b161-aa601260806b": 95
+          }
+        },
+        {
+          "id": "c7528902-1dcb-4ef5-826a-b6fb9131e4a5",
+          "name": "Level2",
+          "tones": {
+            "88c46e78-d29e-4cb1-a847-71dcc439872f": 95,
+            "0cd52437-9b20-422d-b161-aa601260806b": 20
+          }
+        },
+        {
+          "id": "769ad94a-f869-480c-9d50-580e7cabadb5",
+          "name": "OnLevel2",
+          "tones": {
+            "88c46e78-d29e-4cb1-a847-71dcc439872f": 20,
+            "0cd52437-9b20-422d-b161-aa601260806b": 95
+          }
+        },
+        {
+          "id": "e7138890-2026-4839-b85c-1340771454b4",
+          "name": "Level3",
+          "tones": {
+            "88c46e78-d29e-4cb1-a847-71dcc439872f": 90,
+            "0cd52437-9b20-422d-b161-aa601260806b": 30
+          }
+        },
+        {
+          "id": "093cf15c-a1ed-4fdc-a4c5-72726f95df0f",
+          "name": "OnLevel3",
+          "tones": {
+            "88c46e78-d29e-4cb1-a847-71dcc439872f": 10,
+            "0cd52437-9b20-422d-b161-aa601260806b": 98
+          }
+        },
+        {
+          "id": "a0cbe1b4-a3c3-4a30-8545-10b0ede157b5",
+          "name": "Level4",
+          "tones": {
+            "88c46e78-d29e-4cb1-a847-71dcc439872f": 80,
+            "0cd52437-9b20-422d-b161-aa601260806b": 35
+          }
+        },
+        {
+          "id": "f314790d-fdb4-48fe-bcb5-de3a46de21ec",
+          "name": "OnLevel4",
+          "tones": {
+            "88c46e78-d29e-4cb1-a847-71dcc439872f": 5,
+            "0cd52437-9b20-422d-b161-aa601260806b": 99
+          }
+        },
+        {
+          "id": "af1fa6b6-6af0-4e25-8c31-4e5b27453542",
+          "name": "Level5",
+          "tones": {
+            "88c46e78-d29e-4cb1-a847-71dcc439872f": 70,
+            "0cd52437-9b20-422d-b161-aa601260806b": 40
+          }
+        },
+        {
+          "id": "7f8b8df8-eb57-4575-b953-25e54ac1d892",
+          "name": "OnLevel5",
+          "tones": {
+            "88c46e78-d29e-4cb1-a847-71dcc439872f": 0,
+            "0cd52437-9b20-422d-b161-aa601260806b": 100
+          }
+        }
+      ],
+      "isOpen": true
+    }
+  ]
+}

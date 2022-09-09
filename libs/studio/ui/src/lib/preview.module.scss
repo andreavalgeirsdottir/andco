@@ -1,0 +1,89 @@
+@use 'libs/theme' as *;
+
+$bp-m: 768px;
+
+:export {
+	bp-m: $bp-m;
+}
+
+.container {
+	position: fixed;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 10;
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: center;
+	justify-content: center;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.ul {
+	display: flex;
+	flex-flow: row nowrap;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+	background-color: rgb(0 0 0 / 30%);
+	border-radius: var(--brs-xlarge) var(--brs-xlarge) 0 0;
+	transform: scale(0.75);
+	transform-origin: bottom;
+	backdrop-filter: var(--bdf-large);
+	transition: transform var(--trs-quick), opacity var(--trs-quick), background var(--trs-quick);
+
+	&:hover,
+	&:focus-within {
+		background-color: rgb(0 0 0 / 50%);
+
+		@media (min-width: $bp-m) {
+			transform: scale(1);
+		}
+	}
+
+	li {
+		&:first-child {
+			.button {
+				padding-left: var(--s-5);
+			}
+		}
+
+		&:last-child {
+			.button {
+				padding-right: var(--s-5);
+			}
+		}
+	}
+}
+
+.button {
+	font-weight: var(--fw-regular);
+	font-size: var(--fz-small);
+
+	@include multiplier {
+		color: var(--c-white);
+		text-decoration: none;
+		background: transparent;
+		border: none;
+		border-radius: none;
+	}
+
+	&[data-exit] {
+		@include hover {
+			background-color: rgb(167 24 24);
+		}
+	}
+
+	&[data-clean] {
+		@include hover {
+			background-color: rgb(141 115 44);
+		}
+	}
+
+	&[data-edit] {
+		@include hover {
+			background-color: rgb(67 67 175);
+		}
+	}
+}

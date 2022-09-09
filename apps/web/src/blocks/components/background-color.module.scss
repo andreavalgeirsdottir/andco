@@ -1,0 +1,76 @@
+@use 'libs/theme' as *;
+
+$variants: ('primary', 'secondary', 'tertiary', 'level-1', 'level-2', 'none');
+
+.container {
+	&.background-color {
+		color: var(--c-level0);
+		background-color: var(--c-level3);
+
+		@include on-dark-scheme {
+			@include textTags {
+				color: var(--c-on-level0);
+			}
+
+			hr {
+				background-color: currentcolor;
+			}
+		}
+
+		&-primary {
+			background-color: var(--c-primary);
+		}
+
+		&-secondary {
+			background-color: var(--c-secondary);
+		}
+
+		&-tertiary {
+			background-color: var(--c-tertiary);
+		}
+
+		&-level-1 {
+			background-color: var(--c-level1);
+
+			@include textTags {
+				color: var(--c-primary);
+			}
+
+			hr {
+				background-color: var(--c-primary);
+			}
+		}
+
+		&-level-2 {
+			background-color: var(--c-level2);
+
+			@include textTags {
+				color: var(--c-primary);
+			}
+
+			hr {
+				background-color: var(--c-primary);
+			}
+		}
+
+		&-none {
+			background-color: transparent;
+
+			@include textTags {
+				color: var(--c-primary);
+			}
+
+			hr {
+				background-color: var(--c-primary);
+			}
+		}
+
+		@each $variant in $variants {
+			&-#{$variant} + &-#{$variant} {
+				> * {
+					padding-top: 0;
+				}
+			}
+		}
+	}
+}

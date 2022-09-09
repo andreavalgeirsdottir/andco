@@ -1,0 +1,226 @@
+@use 'libs/theme' as *;
+
+.button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	margin: 0;
+	text-decoration: none;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	appearance: none;
+	@include disabled;
+}
+
+/** Variants */
+.variant {
+	&-fill {
+		--comp-background: var(--c-level0);
+		--comp-color: var(--c-on-level0);
+
+		color: var(--comp-color);
+		font-weight: var(--fw-medium);
+		text-transform: uppercase;
+		background-color: var(--comp-background);
+		border-radius: var(--brs-xsmall);
+		transition: background-color var(--trs-base), color var(--trs-base), opacity var(--trs-base);
+
+		@media (max-width: 500px) {
+			width: 100%;
+		}
+
+		@include interacting {
+			transition: background-color var(--trs-quick), color var(--trs-quick), opacity var(--trs-base);
+		}
+
+		&-primary {
+			--comp-color: var(--c-white);
+			--comp-background: var(--c-secondary);
+
+			@include hover {
+				--comp-background: var(--c-primary);
+			}
+
+			@include active {
+				--comp-background: var(--c-secondary);
+			}
+		}
+
+		&-secondary {
+			--comp-color: var(--c-white);
+			--comp-background: var(--c-primary);
+
+			@include hover {
+				--comp-background: var(--c-secondary);
+			}
+
+			@include active {
+				--comp-background: var(--c-primary);
+			}
+		}
+	}
+
+	/** Stroke */
+	&-stroke {
+		--comp-background: var(--c-transparent);
+		--comp-color: var(--c-on-level0);
+
+		color: var(--comp-color);
+		font-weight: var(--fw-medium);
+		text-transform: uppercase;
+		background-color: var(--comp-background);
+		border-radius: var(--brs-xsmall);
+
+		@media (max-width: 500px) {
+			width: 100%;
+		}
+
+		&-secondary {
+			@include outline(var(--c-secondary), var(--c-primary));
+		}
+
+		&-primary {
+			@include outline(var(--c-primary), var(--c-secondary));
+		}
+	}
+
+	/** Plain variants */
+	&-plain {
+		--comp-color: inherit;
+		--comp-background: transparent;
+
+		color: var(--comp-color);
+		font-weight: var(--fw-semibold);
+		background: none;
+		background-color: var(--comp-background);
+		border-radius: var(--brs-small);
+		transition: background var(--trs-base), color var(--trs-base), outline var(--trs-base),
+			opacity var(--trs-base);
+
+		@include interacting {
+			transition: background var(--trs-quick), color var(--trs-quick), outline var(--trs-quick),
+				opacity var(--trs-base);
+		}
+
+		@include hover {
+			--comp-background: var(--c-interaction-2);
+		}
+
+		@include active {
+			--comp-background: var(--c-interaction-4);
+		}
+	}
+
+	/** Plain variants */
+	&-inline {
+		--comp-background: none;
+		--comp-color: inherit;
+
+		color: var(--comp-color);
+		text-decoration: underline;
+		background: var(--comp-background);
+		border-radius: var(--brs-small);
+		transition: background var(--trs-base), color var(--trs-base), outline var(--trs-base),
+			opacity var(--trs-base);
+
+		@include multiplier {
+			height: auto;
+			margin: var-(--s-05) var-(--s-1);
+			padding: var(--s-05) var(--s-1);
+			font-size: inherit;
+		}
+
+		@include interacting {
+			transition: background var(--trs-quick), color var(--trs-quick), outline var(--trs-quick),
+				opacity var(--trs-base);
+		}
+
+		@include hover {
+			background-color: var(--c-interaction-1);
+		}
+
+		@include active {
+			background-color: var(--c-interaction-2);
+		}
+	}
+}
+
+.isLoading {
+	cursor: wait;
+	opacity: 0.6;
+}
+
+.iconPosition {
+	--comp-icon-gap: var(--s-1);
+
+	column-gap: var(--comp-icon-gap);
+
+	&-before {
+		flex-direction: row-reverse;
+	}
+
+	&-after {
+		flex-direction: row;
+	}
+}
+
+.unstyled {
+	padding: 0;
+	color: currentcolor;
+	font-size: inherit;
+	background: none;
+}
+
+/** Sizes */
+.size {
+	--comp-font-size: var(--fz-tiny);
+	--comp-padding-vertical: var(--sz-tiny);
+	--comp-padding-horizontal: var(--sz-xsmall);
+	--comp-icon-size: var(--comp-font-size);
+
+	padding: var(--comp-padding-vertical) var(--comp-padding-horizontal);
+	font-size: var(--comp-font-size);
+
+	&.iconOnly {
+		height: auto;
+		padding: var(--comp-icon-size);
+	}
+
+	&-xsmall {
+		--comp-padding-vertical: var(--sz-tiny);
+		--comp-padding-horizontal: var(--sz-xsmall);
+		--comp-font-size: var(--fz-tiny);
+	}
+
+	&-small {
+		--comp-padding-vertical: var(--sz-xsmall);
+		--comp-padding-horizontal: var(--sz-small);
+		--comp-font-size: var(--fz-xsmall);
+	}
+
+	&-medium {
+		--comp-padding-vertical: var(--sz-small);
+		--comp-padding-horizontal: var(--sz-medium);
+		--comp-font-size: var(--fz-small);
+	}
+
+	&-large {
+		--comp-padding-vertical: var(--sz-medium);
+		--comp-padding-horizontal: var(--sz-large);
+		--comp-font-size: var(--fz-body);
+	}
+}
+
+.iconOnly {
+	aspect-ratio: 1/1;
+	border-radius: 100%;
+
+	&::before {
+		@include expand-click-area;
+	}
+
+	.icon {
+		margin: 0;
+	}
+}
