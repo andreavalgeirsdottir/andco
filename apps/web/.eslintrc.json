@@ -1,0 +1,40 @@
+{
+	"extends": ["@noaignite-dk/eslint-config/next", "../../.eslintrc.json"],
+	"ignorePatterns": ["!**/*"],
+	"rules": {
+		"@next/next/no-html-link-for-pages": ["error", "apps/web/src/pages/"],
+		"react/self-closing-comp": "warn",
+		"function-paren-newline": "off",
+		"implicit-arrow-linebreak": "off",
+		"import/order": "off",
+		"import/prefer-default-export": "off",
+		"no-empty-pattern": "off",
+		"no-mixed-spaces-and-tabs": "off",
+		"object-curly-newline": "off",
+		"operator-linebreak": "off",
+		"react-hooks/exhaustive-deps": [
+			"warn",
+			{
+				"additionalHooks": "(useKeyPressEffect)"
+			}
+		]
+	},
+	"overrides": [
+		{
+			"files": ["*.ts", "*.tsx"],
+			"excludedFiles": ["*.stories.ts", "*.stories.tsx"],
+			"rules": {
+				"no-restricted-imports": [
+					"error",
+					{
+						"name": "@noa/library",
+						"message": "Please don't import the library directly. It's only meant to be used for *.stories.tsx files"
+					}
+				]
+			}
+		}
+	],
+	"env": {
+		"jest": true
+	}
+}

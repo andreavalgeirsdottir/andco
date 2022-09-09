@@ -1,0 +1,9 @@
+{
+	"name": "@noa/studio-ui",
+	"version": "1.0.0",
+	"private": true,
+	"dependencies": {
+		"@noa/utils-requests": "1.0.0",
+		"react-query": "3.39.1"
+	}
+}

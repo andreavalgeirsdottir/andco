@@ -1,0 +1,17 @@
+@mixin scrollbar($color: var(--c-interaction-2)) {
+	&::-webkit-scrollbar {
+		width: var(--s-3);
+	}
+
+	&::-webkit-scrollbar-track {
+		background-color: transparent;
+		border-radius: 100px;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background-color: $color;
+		background-clip: content-box;
+		border: var(--s-05) solid transparent;
+		border-radius: 100px;
+	}
+}

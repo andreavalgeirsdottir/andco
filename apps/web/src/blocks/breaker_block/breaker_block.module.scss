@@ -1,0 +1,236 @@
+@use 'libs/theme' as *;
+
+$bp-s: 500px;
+$bp-m: 1024px;
+$bp-l: 1440px;
+
+:export {
+	bp-s: $bp-s;
+	bp-m: $bp-m;
+	bp-l: $bp-l;
+}
+
+.breakerBlock {
+	position: relative;
+	display: flex;
+	flex-flow: column-reverse nowrap;
+
+	--size: var(--s-6);
+	--width-padding: 0;
+	--width: 50%;
+
+	.inner {
+		display: flex;
+		flex-flow: row nowrap;
+	}
+
+	.content {
+		display: flex;
+		flex-flow: column nowrap;
+		align-items: flex-start;
+		justify-content: flex-start;
+		color: var(--c-primary);
+		row-gap: var(--sz-gap-medium);
+
+		.title {
+			font-weight: var(--fw-regular);
+			font-size: var(--fz-h3);
+
+			+ .simpleText {
+				margin-top: var-(--s-3);
+			}
+		}
+	}
+
+	.foregroundImage {
+		position: relative;
+		z-index: 1;
+		width: calc(100% - var(--size) * 2);
+		margin: 0 var(--size) calc(-50% + var(--s-10));
+		overflow: hidden;
+		border-radius: 50%;
+		transform: translateY(-50%);
+	}
+
+	.backgroundImage {
+		width: calc(100% + var(--s-padding-horizontal) * 2);
+		margin: calc(var-(--s-padding-horizontal));
+	}
+
+	&.variant {
+		&-wide-text {
+			&-right,
+			&-left {
+				.backgroundImage {
+					width: 100%;
+					max-width: 300px;
+					margin: 0 auto;
+					padding-top: var(--s-8);
+
+					> span {
+						overflow: hidden;
+						border-radius: 50%;
+					}
+				}
+			}
+		}
+	}
+
+	@media (min-width: $bp-s) {
+		.foregroundImage {
+			position: relative;
+			z-index: 1;
+			width: calc(clamp(300px, 50vw, 400px) - var(--size) * 2);
+			margin: 0 auto calc(-25% + var(--s-10));
+			overflow: hidden;
+			border-radius: 50%;
+			transform: translateY(-50%);
+		}
+	}
+
+	@media (min-width: $bp-m) {
+		--fg-size: clamp(280px, 27vw, 350px);
+
+		position: relative;
+		overflow: hidden;
+
+		.content {
+			position: relative;
+			z-index: 1;
+			justify-content: center;
+			width: var(--width);
+			min-height: 40vh;
+		}
+
+		.foregroundImage {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			width: var(--fg-size);
+			height: var(--fg-size);
+			margin: 0;
+			transform: translate(-50%, -50%);
+		}
+
+		.backgroundImage {
+			position: absolute;
+			top: 0;
+			width: calc(var-(--width) + 100%);
+			height: 100%;
+		}
+
+		&:not(.hasForegroundImage) {
+			--width-padding: 10vw;
+
+			.backgroundImage {
+				width: calc(var-(--width) + 100% + var(--width-padding) - var(--s-4));
+			}
+		}
+
+		&.variant {
+			&-text {
+				&-left {
+					.inner {
+						flex-flow: row nowrap;
+					}
+
+					&:not(.hasForegroundImage) {
+						.content {
+							padding-right: calc(var(--s-8) + var(--width-padding));
+						}
+					}
+
+					&.hasForegroundImage {
+						.content {
+							padding-right: calc((var(--fg-size) / 2) + var(--s-8));
+						}
+					}
+
+					.backgroundImage {
+						right: 0;
+					}
+				}
+
+				&-right {
+					.inner {
+						flex-flow: row-reverse nowrap;
+					}
+
+					&:not(.hasForegroundImage) {
+						.content {
+							padding-left: calc(var(--s-8) + var(--width-padding));
+						}
+					}
+
+					&.hasForegroundImage {
+						.content {
+							padding-left: calc((var(--fg-size) / 2) + var(--s-8));
+						}
+					}
+
+					.backgroundImage {
+						right: auto;
+						left: 0;
+					}
+				}
+			}
+
+			&-wide-text {
+				&-left,
+				&-right {
+					--width: 65%;
+					--image-size: clamp(300px, 17vw, 350px);
+
+					.backgroundImage {
+						@include multiplier {
+							top: var(--s-14);
+							width: var(--image-size);
+							max-width: var(--image-size);
+							height: var(--image-size);
+						}
+					}
+				}
+
+				&-left {
+					.inner {
+						flex-flow: row nowrap;
+					}
+
+					.content {
+						align-items: flex-end;
+						text-align: right;
+						padding-right: var(--s-4);
+					}
+
+					.backgroundImage {
+						left: var(--width);
+					}
+				}
+
+				&-right {
+					.inner {
+						flex-flow: row-reverse nowrap;
+					}
+
+					.content {
+						padding-left: var(--s-4);
+					}
+
+					.backgroundImage {
+						right: var(--width);
+					}
+				}
+			}
+		}
+	}
+
+	@media (min-width: $bp-l) {
+		&:not(.hasForegroundImage) {
+			--width-padding: 10vw;
+
+			.backgroundImage {
+				width: calc(var-(--width) + 100% + var(--width-padding) - var(--s-8));
+			}
+		}
+	}
+}

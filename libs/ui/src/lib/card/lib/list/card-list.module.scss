@@ -1,0 +1,55 @@
+@use 'libs/theme' as *;
+
+$bp-s: 420px;
+$bp-m: 768px;
+
+:export {
+	bp-s: $bp-s;
+	bp-m: $bp-m;
+}
+
+.div {
+	--column-gap: var(--sz-gap-xsmall);
+	--row-gap: var(--sz-gap-xsmall);
+	--minmax: 200px;
+
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(var(--minmax), 1fr));
+	column-gap: var(--column-gap);
+	row-gap: var(--row-gap);
+
+	@include multiplier {
+		> * {
+			margin-inline-end: 0;
+			margin-inline-start: 0;
+		}
+	}
+}
+
+@media (min-width: $bp-s) {
+	.div {
+		&.size {
+			&-small {
+				--minmax: 200px;
+			}
+
+			&-medium {
+				--minmax: 250px;
+			}
+		}
+	}
+}
+
+@media (min-width: $bp-m) {
+	.div {
+		&.size {
+			&-small {
+				--minmax: 250px;
+			}
+
+			&-medium {
+				--minmax: 250px;
+			}
+		}
+	}
+}

@@ -1,0 +1,128 @@
+{
+	"extends": ["@noaignite-dk/eslint-config/typescript"],
+	"plugins": ["simple-import-sort", "@nrwl/nx"],
+	"root": true,
+
+	"rules": {
+		"@nrwl/nx/enforce-module-boundaries": [
+			"error",
+			{
+				"allow": ["@apps", "@web", "@studio", "@noa/theme"],
+				"depConstraints": [
+					{
+						"onlyDependOnLibsWithTags": ["*"],
+						"sourceTag": "*"
+					}
+				],
+				"enforceBuildableLibDependency": true
+			}
+		],
+		"function-paren-newline": "off",
+		"global-require": "error",
+		"implicit-arrow-linebreak": "off",
+		"import/no-extraneous-dependencies": ["off"],
+		"import/prefer-default-export": "off",
+		"no-tabs": "off",
+		"no-empty-pattern": "off",
+		"no-mixed-spaces-and-tabs": "off",
+		"no-promise-executor-return": "off",
+		"no-console": ["warn", { "allow": ["warn", "error", "info", "group", "groupEnd"] }],
+		"object-curly-newline": "off",
+		"operator-linebreak": "off",
+		"comma-dangle": ["error", "always-multiline"],
+		"prefer-destructuring": "off",
+		"max-len": [
+			"error",
+			{
+				"code": 140,
+				"ignoreComments": true,
+				"ignoreStrings": true,
+				"ignoreTemplateLiterals": true,
+				"ignoreRegExpLiterals": true
+			}
+		],
+		"simple-import-sort/imports": [
+			"warn",
+			{
+				"groups": [
+					["^((?!((.*).(scss|css))))"],
+					["^(@noa/)"],
+					["^(@project_name/)"],
+					["^(@apps|@web|@studio/.+/assets|assets/)"],
+					["^(@apps|@web|@studio/.+/blocks|templates/)"],
+					["^(@apps|@web|@studio/.+/components|components/)"],
+					["^(@apps|@web|@studio/.+/config|config/)"],
+					["^(@apps|@web|@studio/.+/constants|constants/)"],
+					["^(@apps|@web|@studio/.+/layouts|layouts/)"],
+					["^(@apps|@web|@studio/.+/lib|lib/)"],
+					["^(@apps|@web|@studio/.+/pages|pages/)"],
+					["^(@apps|@web|@studio/.+/services|services/)"],
+					["^(@apps|@web|@studio/.+/state|state/)"],
+					["^(@apps|@web|@studio/.+/styles|styles/)"],
+					["^(@apps|@web|@studio/.+/templates|templates/)"],
+					["^(@apps|@web|@studio/.+/translations|translations/)"],
+					["^(@apps|@web|@studio/.+/types|types/)"],
+					["^(@apps|@web|@studio/.+/utils|utils/)"],
+					["^(@apps|@web|@studio/.+/(.*).(scss|css)$)"],
+					["^((./|../))"],
+					["^((./|../)(.*).(scss|css)$)"]
+				]
+			}
+		],
+		"unused-imports/no-unused-imports": ["error"],
+		"unused-imports/no-unused-vars": [
+			"warn",
+			{
+				"args": "after-used",
+				"argsIgnorePattern": "^_",
+				"vars": "all",
+				"varsIgnorePattern": "^_"
+			}
+		]
+	},
+	"overrides": [
+		{
+			"files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+			"parserOptions": {
+				"project": ["tsconfig(.*)?.json"]
+			},
+			"rules": {
+				"@typescript-eslint/ban-types": "off",
+				"@typescript-eslint/comma-dangle": "off",
+				"@typescript-eslint/dot-notation": "off",
+				"@typescript-eslint/indent": "off",
+				"@typescript-eslint/naming-convention": "off",
+				"@typescript-eslint/no-unused-vars": "off",
+				"@typescript-eslint/no-use-before-define": "off",
+				"@typescript-eslint/no-shadow": [
+					"error",
+					{
+						"ignoreFunctionTypeParameterNameValueShadow": true
+					}
+				]
+			}
+		},
+		{
+			"excludedFiles": ["*.stories.ts", "*.stories.tsx"],
+			"files": ["*.ts", "*.tsx"],
+			"rules": {
+				"no-restricted-imports": [
+					"error",
+					{
+						"message": "Please don't import this library in non *.stories.* files. It's only meant to be used internally in Storybook",
+						"name": "@noa/utils-storybook"
+					}
+				]
+			}
+		},
+		{
+			"files": ["*.mjs"],
+			"rules": {
+				"import/extensions": "off",
+				"import/no-unresolved": "off",
+				"import/no-relative-packages": "off",
+				"no-console": "off"
+			}
+		}
+	]
+}

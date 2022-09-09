@@ -1,0 +1,58 @@
+@use '../index.scss' as *;
+
+// Global data attributes for settings a specific level
+$levels: (0, 1, 2, 3, 4, 5);
+@each $level in $levels {
+	@media (prefers-color-scheme: dark) {
+		[data-level='#{$level}'] {
+			background: var(--c-schemes-dark-level#{$level});
+			@include textTags {
+				color: var(--c-schemes-dark-on-level#{$level});
+			}
+
+			&[data-reversed] {
+				background: var(--c-schemes-light-level#{$level});
+				@include textTags {
+					color: var(--c-schemes-light-on-level#{$level});
+				}
+			}
+		}
+	}
+
+	@media (prefers-color-scheme: light) {
+		[data-level='#{$level}'] {
+			background: var(--c-schemes-light-level#{$level});
+			@include textTags {
+				color: var(--c-schemes-light-on-level#{$level});
+			}
+
+			&[data-reversed] {
+				background: var(--c-schemes-dark-level#{$level});
+				@include textTags {
+					color: var(--c-schemes-dark-on-level#{$level});
+				}
+			}
+		}
+	}
+}
+
+// Global data attributes for settings a specific theme and level
+
+$schemes: (light, dark);
+@each $scheme in $schemes {
+	[data-scheme='#{$scheme}'] {
+		background: var(--c-schemes-#{$scheme}-level0);
+		@include textTags {
+			color: var(--c-schemes-#{$scheme}-on-level0);
+		}
+	}
+
+	@each $level in $levels {
+		[data-scheme='#{$scheme}-#{$level}'] {
+			background: var(--c-schemes-#{$scheme}-level#{$level});
+			@include textTags {
+				color: var(--c-schemes-#{$scheme}-on-level#{$level});
+			}
+		}
+	}
+}

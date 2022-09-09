@@ -1,0 +1,73 @@
+@use 'libs/theme' as *;
+
+.block {
+	display: block;
+
+	> * {
+		&:not(:first-child) {
+			margin-top: var(--sz-gap-medium);
+		}
+	}
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		+ p,
+		+ ol,
+		+ ul {
+			margin-top: var(--s-2);
+		}
+	}
+
+	sup {
+		line-height: 0;
+	}
+
+	em {
+		font-style: italic;
+	}
+
+	small {
+		font-size: var(--fz-xsmall);
+	}
+
+	strong {
+		font-weight: var(--fw-medium);
+	}
+
+	ul,
+	ol {
+		display: flex;
+		flex-flow: column nowrap;
+		padding: 0.5rem 0 0.5rem 1rem;
+		row-gap: var(--s-4);
+	}
+
+	ul > li {
+		list-style: disc;
+	}
+
+	ol > li {
+		list-style: decimal;
+	}
+
+	a:not([data-button]) {
+		text-decoration: underline;
+	}
+
+	.center {
+		@include multiplier(10) {
+			text-align: center;
+		}
+	}
+
+	blockquote {
+		padding: var(--s-6);
+		font-size: var(--fz-h5);
+		font-style: italic;
+		text-align: center;
+	}
+}

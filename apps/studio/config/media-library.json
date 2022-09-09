@@ -1,0 +1,9 @@
+{
+  "customFields": [
+    {
+      "label": "Attribution",
+      "name": "attribution",
+      "placeholder": "No attribution yet"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+.skipContent {
+	position: absolute;
+	top: 0;
+	left: 50%;
+	z-index: 11;
+	display: inline-block;
+	padding: 5px 10px;
+	overflow: hidden;
+	color: var(--c-level4);
+	font-size: var(--fz-tiny);
+	text-decoration: none;
+	background-color: var(--c-on-level4);
+	border-radius: 0 0 var(--brs-medium) var(--brs-medium);
+	transform: translate(-50%, -100%);
+	opacity: 0;
+	transition: transform var(--trs-quick), opacity var(--trs-quick);
+	pointer-events: none;
+
+	&:focus {
+		outline: none;
+		transform: translate(-50%, 0);
+		opacity: 1;
+		pointer-events: auto;
+	}
+}

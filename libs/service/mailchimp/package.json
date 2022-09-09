@@ -1,0 +1,7 @@
+{
+	"name": "@noa/service-mailchimp",
+	"version": "0.0.1",
+	"dependencies": {
+		"react-hook-form": "7.31.3"
+	}
+}

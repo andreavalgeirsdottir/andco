@@ -1,0 +1,10 @@
+{
+	"name": "@noa/utils-next",
+	"version": "1.0.0",
+	"dependencies": {
+		"@noa/theme": "1.0.0",
+		"@noa/utils-common": "1.0.0",
+		"framer-motion": "6.3.13",
+		"next": "12.2.2"
+	}
+}

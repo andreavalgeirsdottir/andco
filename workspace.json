@@ -1,0 +1,25 @@
+{
+	"version": 2,
+	"projects": {
+		"service-mailchimp": "libs/service/mailchimp",
+		"service-meilisearch": "libs/service/meilisearch",
+		"service-testing": "libs/service/testing",
+		"service-tracking": "libs/service/tracking",
+		"studio": "apps/studio",
+		"studio-blocks": "libs/studio/blocks",
+		"studio-types": "libs/studio/types",
+		"studio-ui": "libs/studio/ui",
+		"theme": "libs/theme",
+		"ui": "libs/ui",
+		"utils-animations": "libs/utils/animations",
+		"utils-cli": "libs/utils/cli",
+		"utils-common": "libs/utils/common",
+		"utils-date": "libs/utils/date",
+		"utils-next": "libs/utils/next",
+		"utils-requests": "libs/utils/requests",
+		"utils-storybook": "libs/utils/storybook",
+		"web": "apps/web",
+		"web-e2e": "apps/web-e2e"
+	},
+	"$schema": "./node_modules/nx/schemas/workspace-schema.json"
+}

@@ -1,0 +1,25 @@
+@use 'libs/theme' as *;
+
+$bp-m: 1024px;
+
+:export {
+	bp-m: $bp-m;
+}
+
+.headerInner {
+	@include multiplier(3) {
+		padding-bottom: var(--s-8);
+	}
+}
+
+.listInner {
+	.headerInner + & {
+		@include multiplier(3) {
+			padding-top: 0;
+		}
+	}
+}
+
+.empty {
+	text-align: center;
+}

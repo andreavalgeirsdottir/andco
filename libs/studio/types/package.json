@@ -1,0 +1,17 @@
+{
+	"name": "@noa/studio-types",
+	"version": "1.0.0",
+	"private": true,
+	"type": "commonjs",
+	"types": "./src/generated/schema.d.ts",
+	"scripts": {
+		"generate_schema": "ts-node -P ./tsconfig.lib.json ./src/lib/generator && eslint ./src --fix"
+	},
+	"dependencies": {
+		"@babel/plugin-proposal-nullish-coalescing-operator": "7.17.12",
+		"@babel/plugin-proposal-numeric-separator": "7.16.7",
+		"@babel/plugin-proposal-optional-chaining": "7.17.12",
+		"@noa/theme": "1.0.0",
+		"@sanity-codegen/schema-codegen": "1.0.0-alpha.26"
+	}
+}

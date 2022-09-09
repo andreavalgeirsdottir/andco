@@ -1,0 +1,27 @@
+{
+	"name": "@noa/ui",
+	"version": "1.0.0",
+	"private": true,
+	"scripts": {
+		"icon_generate": "yarn icon_svgo && node ./src/lib/icon/scripts/generate.mjs",
+		"icon_svgo": "svgo ./src/lib/icon/assets/** --config ./src/lib/icon/config/svgo.config.js"
+	},
+	"dependencies": {
+		"@hookform/resolvers": "2.8.10",
+		"@ngneat/falso": "2.27.0",
+		"@noa/theme": "1.0.0",
+		"@noa/utils-animations": "1.0.0",
+		"@noa/utils-common": "1.0.0",
+		"@noaignite-dk/utils-next": "2.0.8",
+		"@popperjs/core": "2.11.5",
+		"@reach/tooltip": "0.17.0",
+		"classnames": "2.3.1",
+		"framer-motion": "6.3.10",
+		"react-hook-form": "7.31.3",
+		"react-popper": "2.3.0",
+		"recoil": "0.7.3-alpha.2",
+		"svgo": "2.8.0",
+		"type-zoo": "3.4.1",
+		"yup": "0.32.11"
+	}
+}
